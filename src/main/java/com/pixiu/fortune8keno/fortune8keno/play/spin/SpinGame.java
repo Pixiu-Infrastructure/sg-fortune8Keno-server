@@ -22,7 +22,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SpinGame {
 
-    Random random = new Random();
+//    Random random = new Random();
 
     private final RngClient rngClient;
 
@@ -111,17 +111,18 @@ public class SpinGame {
 
 //        // The one and only outcome-determining call: draw N unique balls via
 //        // the platform RNG (never generated locally).
-//    TODO     List<Integer> drawn = rngClient.drawUnique(properties.getPoolSize(), properties.getDrawCount());
+
 
         List<Integer> drawn = rngClient.drawUnique(properties.getPoolSize(), properties.getDrawCount());
 
         int multiplier = 1; // Reset multiplier for each game;
-        TreeSet<Integer> serverDrawnNumbers = getServerDrawnNumbers(random);
-        int lastServerNum = serverDrawnNumbers.last();
+       // TreeSet<Integer> serverDrawnNumbers = getServerDrawnNumbers(random);
+        int lastServerNum = drawn.get(drawn.size() - 1);
         //getPlayerNumbers(random);
+        Set<Integer> uniqueSelectedNumbers = new HashSet<>(drawn); // coverting drawn numbers to set to remove duplicates.
 
 
-        Set<Integer> matchedNumbers =  checkMatches(playerNumbers, serverDrawnNumbers);
+        Set<Integer> matchedNumbers =  checkMatches(playerNumbers,  uniqueSelectedNumbers);
         double winningAmount = 0;
         if(checkIfMultiplierTriggered(playerNumbers, lastServerNum)){
             multiplier = 8;
@@ -146,11 +147,12 @@ public class SpinGame {
 
         CommandResult commandResult = new CommandResult();
         commandResult.setSelectedNumbers(playerNumbers);
-        commandResult.setDrawnNumbers(serverDrawnNumbers);
+        commandResult.setDrawnNumbers(uniqueSelectedNumbers);
         commandResult.setMatchedNumbers(matchedNumbers);
         commandResult.setHits(matchedNumbers.size());
         commandResult.setMultiplier(multiplier);
         commandResult.setGameState(state);
+        commandResult.setLastNumber(lastServerNum);
 
         spinResult.setResult(commandResult);
         spinResult.setAction("start");
@@ -164,23 +166,24 @@ public class SpinGame {
         return gameConfiguration.getGameMathConfigSeparate().getKenoPayouts().containsKey(picks);
     }
 
-    public TreeSet<Integer> getServerDrawnNumbers(Random random) {
-        TreeSet<Integer> serverDrawnNumbers = new TreeSet<>(); // Clear previous drawn numbers before generating new ones
-
-        while (serverDrawnNumbers.size() < 20) {
-            int drawnNumber = random.nextInt(80) + 1;
-            serverDrawnNumbers.add(drawnNumber);
-            //lastServerNum = drawnNumber; // Update lastServerNum with the most recently drawn number
-
-        }
-        // check if server numbers is 20 numbers
-        if(serverDrawnNumbers.size() != 20){
-            System.out.println("Duplicate numbers generated for server draw, regenerating...");
-            throw new RuntimeException("Duplicate numbers generated for server draw, regenerating...");
-        }
-        return  serverDrawnNumbers;
-    }
-    public Set<Integer> checkMatches(Set<Integer> playerNumbers, TreeSet<Integer> serverDrawnNumbers) {
+//    public TreeSet<Integer> getServerDrawnNumbers(Random random) {
+//        TreeSet<Integer> serverDrawnNumbers = new TreeSet<>(); // Clear previous drawn numbers before generating new ones
+//
+//        while (serverDrawnNumbers.size() < 20) {
+//            int drawnNumber =
+//            .nextInt(80) + 1;
+//            serverDrawnNumbers.add(drawnNumber);
+//            //lastServerNum = drawnNumber; // Update lastServerNum with the most recently drawn number
+//
+//        }
+//        // check if server numbers is 20 numbers
+//        if(serverDrawnNumbers.size() != 20){
+//            System.out.println("Duplicate numbers generated for server draw, regenerating...");
+//            throw new RuntimeException("Duplicate numbers generated for server draw, regenerating...");
+//        }
+//        return  serverDrawnNumbers;
+//    }
+    public Set<Integer> checkMatches(Set<Integer> playerNumbers, Set<Integer> serverDrawnNumbers) {
         Set<Integer> matchedNumbers = new HashSet<>();
         for (Integer number : playerNumbers) {
             if (serverDrawnNumbers.contains(number)) {

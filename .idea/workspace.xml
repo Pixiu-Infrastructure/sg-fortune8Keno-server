@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfd1d467-7362-43f7-b085-9315f55a859d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/game/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/results/CommandResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/results/CommandResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/service/RngClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/service/RngClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,24 +145,19 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java</url>
-          <line>52</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/rtp/KenoRTP.java</url>
           <line>70</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="25" />
+          <line>115</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/service/RngClient.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="26" />
+          <line>62</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />

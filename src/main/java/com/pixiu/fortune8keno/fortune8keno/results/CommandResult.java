@@ -13,6 +13,7 @@ public class CommandResult {
     private Set<Integer> drawnNumbers;
     private Set<Integer> matchedNumbers;
     private int hits;
+    private int lastNumber;
     private int multiplier;
     private GameStateDTO gameState = new GameStateDTO();
 }

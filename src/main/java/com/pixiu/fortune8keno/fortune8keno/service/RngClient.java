@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -71,6 +72,10 @@ public class RngClient {
         List<Integer> drawn = new ArrayList<>(count);
         for (int index : response.randomNumbers()) {
             drawn.add(pool.remove(index));
+        }
+        if (new HashSet<>(drawn).size() != drawn.size()) {
+            throw new IllegalStateException(
+                    "RNG service returned duplicate numbers: " + drawn);
         }
         return drawn;
     }
