@@ -22,7 +22,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SpinGame {
 
-//    Random random = new Random();
+    Random random = new Random();
 
     private final RngClient rngClient;
 
@@ -113,11 +113,15 @@ public class SpinGame {
 //        // the platform RNG (never generated locally).
 
 
-        List<Integer> drawn = rngClient.drawUnique(properties.getPoolSize(), properties.getDrawCount());
+//        List<Integer> drawn = rngClient.drawUnique(properties.getPoolSize(), properties.getDrawCount());  TODO revert for real rng
+
+        TreeSet<Integer> drawn =  getServerDrawnNumbers(random);
+
 
         int multiplier = 1; // Reset multiplier for each game;
-       // TreeSet<Integer> serverDrawnNumbers = getServerDrawnNumbers(random);
-        int lastServerNum = drawn.get(drawn.size() - 1);
+//
+//        int lastServerNum = drawn.get(drawn.size() - 1); TODO revert for real rng
+        int lastServerNum = drawn.last();
         //getPlayerNumbers(random);
         Set<Integer> uniqueSelectedNumbers = new HashSet<>(drawn); // coverting drawn numbers to set to remove duplicates.
 
@@ -166,23 +170,22 @@ public class SpinGame {
         return gameConfiguration.getGameMathConfigSeparate().getKenoPayouts().containsKey(picks);
     }
 
-//    public TreeSet<Integer> getServerDrawnNumbers(Random random) {
-//        TreeSet<Integer> serverDrawnNumbers = new TreeSet<>(); // Clear previous drawn numbers before generating new ones
-//
-//        while (serverDrawnNumbers.size() < 20) {
-//            int drawnNumber =
-//            .nextInt(80) + 1;
-//            serverDrawnNumbers.add(drawnNumber);
-//            //lastServerNum = drawnNumber; // Update lastServerNum with the most recently drawn number
-//
-//        }
-//        // check if server numbers is 20 numbers
-//        if(serverDrawnNumbers.size() != 20){
-//            System.out.println("Duplicate numbers generated for server draw, regenerating...");
-//            throw new RuntimeException("Duplicate numbers generated for server draw, regenerating...");
-//        }
-//        return  serverDrawnNumbers;
-//    }
+    public TreeSet<Integer> getServerDrawnNumbers(Random random) {
+        TreeSet<Integer> serverDrawnNumbers = new TreeSet<>(); // Clear previous drawn numbers before generating new ones
+
+        while (serverDrawnNumbers.size() < 20) {
+            int drawnNumber = random.nextInt(80) + 1;
+            serverDrawnNumbers.add(drawnNumber);
+            //lastServerNum = drawnNumber; // Update lastServerNum with the most recently drawn number
+
+        }
+        // check if server numbers is 20 numbers
+        if(serverDrawnNumbers.size() != 20){
+            System.out.println("Duplicate numbers generated for server draw, regenerating...");
+            throw new RuntimeException("Duplicate numbers generated for server draw, regenerating...");
+        }
+        return  serverDrawnNumbers;
+    }
     public Set<Integer> checkMatches(Set<Integer> playerNumbers, Set<Integer> serverDrawnNumbers) {
         Set<Integer> matchedNumbers = new HashSet<>();
         for (Integer number : playerNumbers) {

@@ -14,36 +14,46 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class KenoRTP {
     static int numberOfAvailableThreads = Runtime.getRuntime().availableProcessors();
     private static GamePlayService gamePlayService;
     //static int numberOfAvailableThreads = 1;
-    static int rounds = 20_000_000; // Number of rounds to simulate
-    static int finishedThreadCount = 0;
+    static int rounds = 100_00; // Number of rounds to simulate
+
     static BigDecimal stakeValue = BigDecimal.ONE; // Assuming a fixed stake of 1 unit per round
 
     static double totalWin = 0;
     static int totalSpot2Count = 0;
-    static int eachThreadRounds = rounds / numberOfAvailableThreads;
+    static int roundPerThread = rounds / numberOfAvailableThreads;
     static long startingTime;
     static RtpResult rtpResult = new RtpResult();
     static PlayerState playerState;
     static PlayRequestCommandData initialCommand;
 
+    static int finishedThreadCount = 0;
+
 
     public static void main(String[] args) throws IllegalAccessException {
 
 
-        playGame();
+//        playGame();
 
-//        ExecutorService  executorService = Executors.newFixedThreadPool(numberOfAvailableThreads);
-//        startingTime = System.currentTimeMillis();
-//
-//        for(int i = 0; i < numberOfAvailableThreads; i++){
-//            executorService.submit(()-> simulateKenoRounds());
-//
-//        }
+        ExecutorService executorService = Executors.newFixedThreadPool(numberOfAvailableThreads);
+        startingTime = System.currentTimeMillis();
+
+        for(int i = 0; i < numberOfAvailableThreads; i++){
+            executorService.submit(()-> {
+                try {
+                    simulateKenoRounds();
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+        }
     }
 
 
@@ -57,16 +67,15 @@ public class KenoRTP {
 
         SpinGame spinGame ;
 
-        double totalWin = 0;
+        double totalWinPerThread = 0;
 
 
-        int rounds = 20_000_000; // Number of rounds to simulate
+
 
         int countWin = 0;
 
 
-
-        for (int i = 0; i < rounds; i++) {
+        for (int i = 0; i < roundPerThread; i++) {
 
             PlayRequest playRequest = getBaseRequest(random);
             SpinResult spinResult =  gamePlayService.play(playRequest, BigDecimal.valueOf(0.86));
@@ -77,19 +86,19 @@ public class KenoRTP {
                 countWin++;
             }
 
-            totalWin += winAmount;
+            totalWinPerThread += winAmount;
         }
-        int totalStake = stakeValue.intValue() * rounds;
-        double rtp = (double) totalWin / totalStake * 100;
-        System.out.println("Hit rate: " + ((double) countWin / rounds * 100) + "%");
-        System.out.println("Total Stake: " + totalStake);
-        System.out.println("Total Win: " + totalWin);
-        System.out.println("RTP: " + rtp + "% ");
+//        int totalStake = stakeValue.intValue() * roundPerThread;
+//        double rtp = (double) totalWinPerThread / totalStake * 100;
+//        System.out.println("Hit rate: " + ((double) countWin / roundPerThread * 100) + "%");
+//        System.out.println("Total Stake: " + totalStake);
+//        System.out.println("Total Win: " + totalWinPerThread);
+//        System.out.println("RTP: " + rtp + "% ");
 
 
 
 
-        return totalWin;
+        return totalWinPerThread;
     }
 
     private static synchronized void addToRtpResult(double result) {
@@ -145,5 +154,11 @@ public class KenoRTP {
         }
 
         return playerNumbers;
+    }
+
+    private static void simulateKenoRounds() throws IllegalAccessException {
+
+        addToRtpResult(playGame());
+
     }
 }
