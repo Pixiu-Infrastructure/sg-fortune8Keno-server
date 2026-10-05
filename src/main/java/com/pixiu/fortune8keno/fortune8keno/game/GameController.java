@@ -29,7 +29,7 @@ public class GameController {
     public String getServerVersion(@RequestHeader(value = "X-Trace-ID", required = false) String traceId,
                            @RequestHeader(value = "X-Rtp-Variant", required = false) BigDecimal rtpVariant,
                            @RequestBody PlayRequest playRequest) {
-        return "version 0.0.1";
+        return "version 0.0.2";
     }
 
 
