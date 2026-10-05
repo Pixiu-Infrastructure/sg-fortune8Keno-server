@@ -15,6 +15,7 @@ public class RoundResult {
     private int numberOfSpots;
 
     private int spot2MatchedCount;
+    private String error;
 
     public int getSpot2MatchedCount() {
         return spot2MatchedCount;

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.Callable;
 
 
@@ -23,6 +24,7 @@ public class RtpRunner implements Callable<RtpResult> {
     @Builder.Default
     private final int maxRunsToReportSTD = 1_000_000_0;
     private BigDecimal expectedRTP;
+    private Random random ;
 
     private GamePlayService gamePlayService;
 
@@ -51,21 +53,29 @@ public class RtpRunner implements Callable<RtpResult> {
 
 
         if (gamePlayService == null) gamePlayService = RtpSetUp.createGamePlayService();
-        initialCommand.setAction("START");
+        initialCommand.setAction("start");
         initialCommand.setStakeAmount(stake);
 
         BigDecimal totalWins = BigDecimal.ZERO;
 
+        for (int i = 1; i <= totalRuns; i++) {
 
             RoundResult roundResult = new RtpTask().setStakeValue(stake)
                     .setGamePlayService(gamePlayService)
                     .setExpectedRTP(expectedRTP)
                     .setSaveResults(saveResults)
-                    .setInitialCommand(initialCommand)
+//                    .setInitialCommand(initialCommand)
+                    .setRandom(random)
                     .call();
 
             totalWins = totalWins
                     .add(BigDecimal.valueOf(roundResult.getWinAmount()));
+
+           // System.out.println("Round: " + i + " Win Amount: " + roundResult.getWinAmount() + " Total Wins: " + totalWins);
+
+        }
+
+
 
 
             return new RtpResult()

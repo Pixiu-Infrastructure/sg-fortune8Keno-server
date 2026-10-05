@@ -28,10 +28,6 @@ public class BaseGame {
                 playRequestParameters);
 
 
-
-
-
-
         SpinGameResult spinGameResult = new SpinGameResult();
 
         List<SpinResult> spinResultsList = new ArrayList<>();

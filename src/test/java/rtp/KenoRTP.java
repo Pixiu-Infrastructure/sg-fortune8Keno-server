@@ -18,10 +18,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class KenoRTP {
-    static int numberOfAvailableThreads = Runtime.getRuntime().availableProcessors();
+//    static int numberOfAvailableThreads = Runtime.getRuntime().availableProcessors();
+    static int numberOfAvailableThreads =1;
+
+
     private static GamePlayService gamePlayService;
     //static int numberOfAvailableThreads = 1;
-    static int rounds = 100_00; // Number of rounds to simulate
+    static int rounds = 100_000_000; // Number of rounds to simulate
 
     static BigDecimal stakeValue = BigDecimal.ONE; // Assuming a fixed stake of 1 unit per round
 
@@ -59,7 +62,7 @@ public class KenoRTP {
 
 
     private static double playGame() throws IllegalAccessException {
-        Random random = new Random();
+        Random random = new Random(); // per thread
 
 
         if (gamePlayService == null) gamePlayService = RtpSetUp.createGamePlayService();
@@ -120,6 +123,7 @@ public class KenoRTP {
         initialCommand.setAction("start");
         initialCommand.setStakeAmount(stakeValue);
         initialCommand.setSelectedNumbers(getPlayerNumbers(random));
+        initialCommand.setRandomNumber(random);
         StateResult stateResult = new StateResult();
 
 

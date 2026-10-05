@@ -1,11 +1,11 @@
-rtp\SingleRTP.class
 rtp\KenoRTP.class
 com\pixiu\fortune8keno\fortune8keno\Fortune8kenoApplicationTests.class
-rtp\RoundResult.class
 rtp\RtpSetUp.class
 rtp\RtpResult.class
-com\pixiu\fortune8keno\fortune8keno\CoreGDKConfig.class
 rtp\RtpTask.class
 rtp\SpinResponse.class
-rtp\RtpRunner$RtpRunnerBuilder.class
 rtp\RtpRunner.class
+rtp\RTPTestSingle$BatchAccumulator.class
+rtp\RoundResult.class
+com\pixiu\fortune8keno\fortune8keno\CoreGDKConfig.class
+rtp\RtpRunner$RtpRunnerBuilder.class

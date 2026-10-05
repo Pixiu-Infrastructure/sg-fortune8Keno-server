@@ -22,7 +22,6 @@ import java.util.*;
 @RequiredArgsConstructor
 public class SpinGame {
 
-    Random random = new Random();
 
     private final RngClient rngClient;
 
@@ -115,7 +114,7 @@ public class SpinGame {
 
 //        List<Integer> drawn = rngClient.drawUnique(properties.getPoolSize(), properties.getDrawCount());  TODO revert for real rng
 
-        TreeSet<Integer> drawn =  getServerDrawnNumbers(random);
+        TreeSet<Integer> drawn =  getServerDrawnNumbers(playRequestParameters.getCommand().getRandomNumber());
 
 
         int multiplier = 1; // Reset multiplier for each game;

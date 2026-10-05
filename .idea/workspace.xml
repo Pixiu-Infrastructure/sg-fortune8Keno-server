@@ -5,9 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfd1d467-7362-43f7-b085-9315f55a859d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/rtp/HelperUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/dto/play/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/dto/play/ErrorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/dto/play/PlayRequestCommandData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/dto/play/PlayRequestCommandData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/basegame/BaseGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/basegame/BaseGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/rtp/KenoRTP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/KenoRTP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpSetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpSetUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/SingleRTP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/fortune8keno-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/fortune8keno-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pixiu.fortune8keno.fortune8keno.Fortune8kenoApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.pixiu.fortune8keno.fortune8keno.Fortune8kenoApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.pixiu.fortune8keno.fortune8keno.Fortune8kenoApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.pixiu.fortune8keno.fortune8keno.Fortune8kenoApplicationTests.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,14 +39,26 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;PixiuGaming&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Pixiu-Infrastructure/sg-fortune8Keno-server.git&quot;,
+    &quot;accountId&quot;: &quot;1bade241-0ccd-4075-ad7c-c0635ac63e4f&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java" root0="SKIP_INSPECTION" />
   </component>
@@ -39,6 +72,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenRunner">
+    <option name="delegateBuildToMaven" value="true" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -47,22 +83,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Fortune8kenoApplication.executor": "Run",
-    "Application.KenoRTP.executor": "Debug",
-    "Maven.fortune8keno [clean].executor": "Run",
-    "Maven.fortune8keno [install].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/prach/Documents/pixiu/projects/deliverables/sg-fortune8Keno-server/pom.xml",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Fortune8kenoApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.KenoRTP.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RTPTestSingle.run.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fortune8keno [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.fortune8keno [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;multi-thread-rtp&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/prach/Documents/pixiu/projects/deliverables/sg-fortune8Keno-server/pom.xml&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.runner&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="rtp" />
@@ -73,13 +113,13 @@
       <recent name="C:\Users\prach\Documents\pixiu\projects\fortune8keno\fortune8keno\src\main\java\com\pixiu\fortune8keno\fortune8keno\config\rtp" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="rtp" />
       <recent name="com.pixiu.fortune8keno.fortune8keno.service" />
       <recent name="com.pixiu.fortune8keno.fortune8keno.config" />
-      <recent name="rtp" />
       <recent name="com.pixiu.fortune8keno.fortune8keno.play.spin" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.KenoRTP">
+  <component name="RunManager" selected="JUnit.RTPTestSingle.run">
     <configuration name="Fortune8kenoApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.pixiu.fortune8keno.fortune8keno.Fortune8kenoApplication" />
       <module name="fortune8keno" />
@@ -106,12 +146,42 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="RTPTestSingle.run" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="fortune8keno" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="rtp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="rtp" />
+      <option name="MAIN_CLASS_NAME" value="rtp.RTPTestSingle" />
+      <option name="METHOD_NAME" value="run" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-Xmx4g -Xms1g" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Fortune8kenoApplication" />
+      <item itemvalue="Application.KenoRTP" />
+      <item itemvalue="JUnit.RTPTestSingle.run" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RTPTestSingle.run" />
         <item itemvalue="Application.KenoRTP" />
         <item itemvalue="Application.Fortune8kenoApplication" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-cffe25b9f5b3-intellij.indexing.shared.core-IU-253.28294.334" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -145,7 +215,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/play/spin/SpinGame.java</url>
-          <line>115</line>
+          <line>114</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -155,13 +225,38 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/rtp/KenoRTP.java</url>
-          <line>100</line>
+          <line>103</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/rtp/KenoRTP.java</url>
-          <line>104</line>
+          <line>107</line>
           <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java</url>
+          <line>126</line>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
         <breakpoint type="java-exception">
           <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />

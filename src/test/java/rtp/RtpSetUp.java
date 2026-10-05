@@ -22,7 +22,7 @@ public class RtpSetUp {
 
         GameMathConfigCommon gameMathConfigCommon = new GameMathConfigCommon();
         GameConfigService gameConfigService = new GameConfigService("1.0.0", new GitProperties(new Properties()), gameMathConfigCommon);
-        Random random = new Random();
+
         GameEngineProperties gameEngineProperties = new GameEngineProperties();
 //        RngClient rngClient = new RngClient();
        SpinGame spinGame = new SpinGame(null, gameEngineProperties);

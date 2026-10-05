@@ -29,7 +29,6 @@ com\pixiu\fortune8keno\fortune8keno\results\SlotDataResults.class
 com\pixiu\fortune8keno\fortune8keno\results\SpinResult.class
 com\pixiu\fortune8keno\fortune8keno\results\GameStateResult.class
 com\pixiu\fortune8keno\fortune8keno\config\GameEngineProperties.class
-com\pixiu\fortune8keno\fortune8keno\config\rtp\GameMathConfigImp_89.class
 com\pixiu\fortune8keno\fortune8keno\play\spin\SpinGame.class
 com\pixiu\fortune8keno\fortune8keno\dto\play\ErrorResponse.class
 com\pixiu\fortune8keno\fortune8keno\config\GameConfigurationForClient.class
