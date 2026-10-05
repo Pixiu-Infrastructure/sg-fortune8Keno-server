@@ -60,6 +60,7 @@ public class SpinGame {
         finalState.setCurrentState(GameState.COLLECTED);
         finalState.setNextState(GameState.NONE);
         finalState.setCloseRound(true);
+
         finalState.setSelectedNumbers(incoming.getSelectedNumbers());
         finalState.setDrawnNumbers(incoming.getDrawnNumbers());
         finalState.setMatchedNumbers(incoming.getMatchedNumbers());
@@ -73,10 +74,7 @@ public class SpinGame {
         response.setAction("collect");
         response.setState(stateResult);
         response.setWinAmount(incoming.getWinAmount());
-
-
-
-
+        response.setRoundDone(true);
         return response;
 
     }
