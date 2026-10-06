@@ -1,6 +1,7 @@
 package com.pixiu.fortune8keno.fortune8keno.results;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.pixiu.fortune8keno.fortune8keno.dto.play.ErrorResponse;
 import lombok.Data;
 
@@ -9,7 +10,6 @@ import lombok.Data;
 public class SpinResult {
 
 
-    private boolean isRoundComplete;
     private double prizeAmount;
 
     private StateResult state = new StateResult();
@@ -20,6 +20,9 @@ public class SpinResult {
     private Double winAmount;
 
     private ErrorResponse error;
+
+    @JsonProperty("isRoundComplete")
+    private boolean roundDone;
 
 
     public static SpinResult error(String action, String code, String message) {
