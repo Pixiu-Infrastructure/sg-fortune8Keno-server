@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7b39db3-f5c6-4bf1-aa90-9835325c1f88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPDataToPrint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpExcelWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RTP_Result_500M.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RTPDataToPrint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPDataToPrint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpExcelWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpExcelWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpResult.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpTask.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,17 +70,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="fortune8keno" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="fortune8keno" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.RTPTestSingle.run" />
@@ -104,5 +92,16 @@
       <updated>1791438031388</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/rtp/RtpTask.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

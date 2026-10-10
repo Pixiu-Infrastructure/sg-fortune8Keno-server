@@ -19,5 +19,26 @@ public class RtpResult {
     private int hitCount;
     private double maxWinAmount;
 
+    int spot3SelectedCount = 0;
+    int matched3NumbersCount = 0;
+
+    int spot4SelectedCount = 0;
+    int matched4NumbersCount = 0;
+
+    int spot5SelectedCount = 0;
+    int matched5NumbersCount = 0;
+
+    int spot6SelectedCount = 0;
+    int matched6NumbersCount = 0;
+    int spot7SelectedCount = 0;
+    int matched7SelectedCount = 0;
+
+    int spot8SelectedCount = 0;
+    int matched8SelectedCount = 0;
+    int spot9SelectedCount = 0;
+    int matched9SelectedCount = 0;
+    int spot10SelectedCount = 0;
+    int matched10SelectedCount = 0;
+
 
 }

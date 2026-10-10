@@ -17,7 +17,7 @@ public class RTPTestSingle {
     private static int forceNumOfThreads = 0; // set this greater than 0 will force to run range check in number of threads/times
     private int availableThreads;
 
-    private final BigDecimal rtp = RTP.VARIANT_86;
+    private final BigDecimal rtp = RTP.VARIANT_92;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
@@ -105,6 +105,24 @@ public class RTPTestSingle {
         rtpDataToPrint.setTotalHits(rtpDataToPrint.getTotalHits() + accumulator.getMatchedNumbersCount());
         rtpDataToPrint.setTotalSpotSelectedCount(rtpDataToPrint.getTotalSpotSelectedCount() + accumulator.getNumberOfSpots());
 
+        rtpDataToPrint.setMatched3NumbersCount(rtpDataToPrint.getMatched3NumbersCount() + accumulator.getMatched3NumbersCount());
+        rtpDataToPrint.setSpot3SelectedCount(rtpDataToPrint.getSpot3SelectedCount() + accumulator.getSpot3SelectedCount());
+        rtpDataToPrint.setMatched4NumbersCount(rtpDataToPrint.getMatched4NumbersCount() + accumulator.getMatched4NumbersCount());
+        rtpDataToPrint.setSpot4SelectedCount(rtpDataToPrint.getSpot4SelectedCount() + accumulator.getSpot4SelectedCount());
+        rtpDataToPrint.setMatched5NumbersCount(rtpDataToPrint.getMatched5NumbersCount() + accumulator.getMatched5NumbersCount());
+        rtpDataToPrint.setSpot5SelectedCount(rtpDataToPrint.getSpot5SelectedCount() + accumulator.getSpot5SelectedCount());
+
+        rtpDataToPrint.setMatched6NumbersCount(rtpDataToPrint.getMatched6NumbersCount() + accumulator.getMatched6NumbersCount());
+        rtpDataToPrint.setSpot6SelectedCount(rtpDataToPrint.getSpot6SelectedCount() + accumulator.getSpot6SelectedCount());
+        rtpDataToPrint.setMatched7NumbersCount(rtpDataToPrint.getMatched7NumbersCount() + accumulator.getMatched7NumbersCount());
+        rtpDataToPrint.setSpot7SelectedCount(rtpDataToPrint.getSpot7SelectedCount() + accumulator.getSpot7SelectedCount());
+        rtpDataToPrint.setMatched8NumbersCount(rtpDataToPrint.getMatched8NumbersCount() + accumulator.getMatched8NumbersCount());
+        rtpDataToPrint.setSpot8SelectedCount(rtpDataToPrint.getSpot8SelectedCount() + accumulator.getSpot8SelectedCount());
+        rtpDataToPrint.setMatched9NumbersCount(rtpDataToPrint.getMatched9NumbersCount() + accumulator.getMatched9NumbersCount());
+        rtpDataToPrint.setSpot9SelectedCount(rtpDataToPrint.getSpot9SelectedCount() + accumulator.getSpot9SelectedCount());
+        rtpDataToPrint.setMatched10NumbersCount(rtpDataToPrint.getMatched10NumbersCount() + accumulator.getMatched10NumbersCount());
+        rtpDataToPrint.setSpot10SelectedCount(rtpDataToPrint.getSpot10SelectedCount() + accumulator.getSpot10SelectedCount());
+
         System.out.println("Completed batch " + batchNum + "/" + totalBatches
                 + " (" + roundsThisBatch + " rounds) — running total wins: " + rtpDataToPrint.getTotalWins());
     }
@@ -139,6 +157,32 @@ public class RTPTestSingle {
         System.out.println("Spot 2 Hit Rate: " + ((double) rtpDataToPrint.getTotalHits() / rtpDataToPrint.getTotalSpotSelectedCount() * 100) + "%");
         System.out.println("Max Win Amount: " + rtpDataToPrint.getMaxWinAmount());
 
+        System.out.println("Matched 3 Numbers Count: " + rtpDataToPrint.getMatched3NumbersCount());
+        System.out.println("Spot 3 Selected Count: " + rtpDataToPrint.getSpot3SelectedCount());
+        System.out.println("Spot 3 Hit Rate: " + ((double) rtpDataToPrint.getMatched3NumbersCount() / rtpDataToPrint.getSpot3SelectedCount() * 100) + "%");
+        System.out.println("Matched 4 Numbers Count: " + rtpDataToPrint.getMatched4NumbersCount());
+        System.out.println("Spot 4 Selected Count: " + rtpDataToPrint.getSpot4SelectedCount());
+        System.out.println("Spot 4 Hit Rate: " + ((double) rtpDataToPrint.getMatched4NumbersCount() / rtpDataToPrint.getSpot4SelectedCount() * 100) + "%");
+        System.out.println("Matched 5 Numbers Count: " + rtpDataToPrint.getMatched5NumbersCount());
+        System.out.println("Spot 5 Selected Count: " + rtpDataToPrint.getSpot5SelectedCount());
+        System.out.println("Spot 5 Hit Rate: " + ((double) rtpDataToPrint.getMatched5NumbersCount() / rtpDataToPrint.getSpot5SelectedCount() * 100) + "%");
+
+        System.out.println("Matched 6 Numbers Count: " + rtpDataToPrint.getMatched6NumbersCount());
+        System.out.println("Spot 6 Selected Count: " + rtpDataToPrint.getSpot6SelectedCount());
+        System.out.println("Spot 6 Hit Rate: " + ((double) rtpDataToPrint.getMatched6NumbersCount() / rtpDataToPrint.getSpot6SelectedCount() * 100) + "%");
+        System.out.println("Matched 7 Numbers   Count: " + rtpDataToPrint.getMatched7NumbersCount());
+        System.out.println("Spot 7 Selected Count: " + rtpDataToPrint.getSpot7SelectedCount());
+        System.out.println("Spot 7 Hit Rate: " + ((double) rtpDataToPrint.getMatched7NumbersCount() / rtpDataToPrint.getSpot7SelectedCount() * 100) + "%");
+        System.out.println("Matched 8 Numbers Count: " + rtpDataToPrint.getMatched8NumbersCount());
+        System.out.println("Spot 8 Selected Count: " + rtpDataToPrint.getSpot8SelectedCount());
+        System.out.println("Spot 8 Hit Rate: " + ((double) rtpDataToPrint.getMatched8NumbersCount() / rtpDataToPrint.getSpot8SelectedCount() * 100) + "%");
+        System.out.println("Matched 9 Numbers Count: " + rtpDataToPrint.getMatched9NumbersCount());
+        System.out.println("Spot 9 Selected Count: " + rtpDataToPrint.getSpot9SelectedCount());
+        System.out.println("Spot 9 Hit Rate: " + ((double) rtpDataToPrint.getMatched9NumbersCount() / rtpDataToPrint.getSpot9SelectedCount() * 100) + "% ");
+        System.out.println("Matched 10 Numbers Count: " + rtpDataToPrint.getMatched10NumbersCount());
+        System.out.println("Spot 10 Selected Count: " + rtpDataToPrint.getSpot10SelectedCount());
+        System.out.println("Spot 10 Hit Rate: " + ((double) rtpDataToPrint.getMatched10NumbersCount() / rtpDataToPrint.getSpot10SelectedCount() * 100) + "% ");
+
         long endTime = System.currentTimeMillis();
         long seconds = (endTime - startingTime) / 1000;
         System.out.println("Time taken: " + seconds + " seconds");
@@ -166,6 +210,27 @@ public class RTPTestSingle {
         private int matchedNumbersCount = 0;
         private int numberOfSpots = 0;
 
+        int spot3SelectedCount = 0;
+        int matched3NumbersCount = 0;
+
+        int spot4SelectedCount = 0;
+        int matched4NumbersCount = 0;
+
+        int spot5SelectedCount = 0;
+        int matched5NumbersCount = 0;
+
+        int spot6SelectedCount = 0;
+        int matched6NumbersCount = 0;
+        int spot7SelectedCount = 0;
+        int matched7NumbersCount = 0;
+
+        int spot8SelectedCount = 0;
+        int matched8NumbersCount = 0;
+        int spot9SelectedCount = 0;
+        int matched9NumbersCount = 0;
+        int spot10SelectedCount = 0;
+        int matched10NumbersCount = 0;
+
         BatchAccumulator(int expectedThreads) {
             this.expectedThreads = expectedThreads;
         }
@@ -179,6 +244,25 @@ public class RTPTestSingle {
             finishedThreads++;
             matchedNumbersCount = matchedNumbersCount + result.getMatchedNumbersCount();
             numberOfSpots = numberOfSpots + result.getNumberOfSpots();
+            spot3SelectedCount = spot3SelectedCount + result.getSpot3SelectedCount();
+            matched3NumbersCount = matched3NumbersCount + result.getMatched3NumbersCount();
+            spot4SelectedCount = spot4SelectedCount + result.getSpot4SelectedCount();
+            matched4NumbersCount = matched4NumbersCount + result.getMatched4NumbersCount();
+            spot5SelectedCount = spot5SelectedCount + result.getSpot5SelectedCount();
+            matched5NumbersCount = matched5NumbersCount + result.getMatched5NumbersCount();
+
+            spot6SelectedCount = spot6SelectedCount + result.getSpot6SelectedCount();
+            matched6NumbersCount = matched6NumbersCount + result.getMatched6NumbersCount();
+            spot7SelectedCount = spot7SelectedCount + result.getSpot7SelectedCount();
+            matched7NumbersCount = matched7NumbersCount + result.getMatched7SelectedCount();
+            spot8SelectedCount = spot8SelectedCount + result.getSpot8SelectedCount();
+            matched8NumbersCount = matched8NumbersCount + result.getMatched8SelectedCount();
+            spot9SelectedCount = spot9SelectedCount + result.getSpot9SelectedCount();
+            matched9NumbersCount = matched9NumbersCount + result.getMatched9SelectedCount();
+            spot10SelectedCount = spot10SelectedCount + result.getSpot10SelectedCount();
+            matched10NumbersCount = matched10NumbersCount + result.getMatched10SelectedCount();
+
+
         }
 
         synchronized BigDecimal getWinAmount() {
@@ -197,7 +281,55 @@ public class RTPTestSingle {
         synchronized int getNumberOfSpots() {
             return numberOfSpots;
         }
+        synchronized int getSpot3SelectedCount() {
+            return spot3SelectedCount;
+        }
+        synchronized int getMatched3NumbersCount() {
+            return matched3NumbersCount;
+        }
+        synchronized int getSpot4SelectedCount() {
+            return spot4SelectedCount;
+        }
+        synchronized int getMatched4NumbersCount() {
+            return matched4NumbersCount;
+        }
+        synchronized int getSpot5SelectedCount() {
+            return spot5SelectedCount;
+        }
+        synchronized int getMatched5NumbersCount() {
+            return matched5NumbersCount;
+        }
 
+        synchronized int getSpot6SelectedCount() {
+            return spot6SelectedCount;
+        }
+        synchronized int getMatched6NumbersCount() {
+            return matched6NumbersCount;
+        }
+        synchronized int getSpot7SelectedCount() {
+            return spot7SelectedCount;
+        }
+        synchronized int getMatched7NumbersCount() {
+            return matched7NumbersCount;
+        }
+        synchronized int getSpot8SelectedCount() {
+            return spot8SelectedCount;
+        }
+        synchronized int getMatched8NumbersCount() {
+            return matched8NumbersCount;
+        }
+        synchronized int getSpot9SelectedCount() {
+            return spot9SelectedCount;
+        }
+        synchronized int getMatched9NumbersCount() {
+            return matched9NumbersCount;
+        }
+        synchronized int getSpot10SelectedCount() {
+            return spot10SelectedCount;
+        }
+        synchronized int getMatched10NumbersCount() {
+            return matched10NumbersCount;
+        }
 
 
     }

@@ -32,6 +32,32 @@ public class RtpExcelWriter {
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpotSelectedCount()), 6, RoundingMode.HALF_UP);
 
+        BigDecimal spot3HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched3NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()), 6, RoundingMode.HALF_UP);
+
+        BigDecimal spot4HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched4NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot5HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched5NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot6HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched6NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot7HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched7NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot8HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched8NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot9HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched9NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot9SelectedCount()), 6, RoundingMode.HALF_UP);
+        BigDecimal spot10HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched10NumbersCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot10SelectedCount()), 6, RoundingMode.HALF_UP);
+
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("RTP Result");
 
@@ -42,18 +68,33 @@ public class RtpExcelWriter {
             headerStyle.setFont(bold);
 
             // Header row
-            Row header = sheet.createRow(0);
+            int r = 0;
+            Row header = sheet.createRow(r++);
             createCell(header, 0, "Metric", headerStyle);
             createCell(header, 1, "Value", headerStyle);
-
             // Data rows
-            addRow(sheet, 1, "Total Rounds", totalRuns);
-            addRow(sheet, 2, "Total Stake", totalStake.doubleValue());
-            addRow(sheet, 3, "Total Wins", rtpDataToPrint.getTotalWins().doubleValue());
-            addRow(sheet, 4, "RTP (%)", rtpPercent.doubleValue());
-            addRow(sheet, 5, "Hit rate", hitRate.doubleValue());
-            addRow(sheet, 6, "Spot 2 Hit Rate", spot2HitRate.doubleValue());
-            addRow(sheet, 7, "Max Win Amount", rtpDataToPrint.getMaxWinAmount());
+            addRow(sheet, r++, "Total Rounds", totalRuns);
+            addRow(sheet, r++, "Total Stake", totalStake.doubleValue());
+            addRow(sheet, r++, "Total Wins", rtpDataToPrint.getTotalWins().doubleValue());
+            addRow(sheet, r++, "RTP (%)", rtpPercent.doubleValue());
+            addRow(sheet, r++, "Hit rate", hitRate.doubleValue());
+            addRow(sheet, r++, "Max Win Amount", rtpDataToPrint.getMaxWinAmount());
+
+            Row header2 = sheet.createRow(r++);
+            createCell(header2, 0, "Spots", headerStyle);
+            createCell(header2, 1, "Hit Rate (%)", headerStyle);
+
+            //data rows for second header
+            addRow(sheet, r++, " Spot 2 ", spot2HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 3 ", spot3HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 4 ", spot4HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 5 ", spot5HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 6 ", spot6HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 7 ", spot7HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 8 ", spot8HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 9 ", spot9HitRate.doubleValue());
+            addRow(sheet, r++, " Spot 10 ", spot10HitRate.doubleValue());
+
 
             sheet.autoSizeColumn(0);
             sheet.autoSizeColumn(1);
