@@ -4,6 +4,7 @@ import com.pixiu.fortune8keno.fortune8keno.game.constants.RTP;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -20,7 +21,7 @@ public class RTPTestSingle {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 500_000_000L;
+    private final long totalRuns = 100_000_00L;
 
 
 
@@ -32,7 +33,8 @@ public class RTPTestSingle {
     // Running total across all batches — accumulated safely between batches
     // since batches run sequentially (one batch's threads fully finish before
     // the next batch starts), so no synchronization is needed here.
-    private BigDecimal totalWins = BigDecimal.ZERO;
+
+    RTPDataToPrint rtpDataToPrint = new RTPDataToPrint();
 
     static long startingTime;
 
@@ -97,10 +99,14 @@ public class RTPTestSingle {
             throw new RuntimeException("Batch " + batchNum + " did not finish within timeout");
         }
 
-        totalWins = totalWins.add(accumulator.getWinAmount());
+        rtpDataToPrint.setTotalWins(rtpDataToPrint.getTotalWins().add(accumulator.getWinAmount()));
+        rtpDataToPrint.setTotalHitCount(rtpDataToPrint.getTotalHitCount() + accumulator.getHitCount());
+        rtpDataToPrint.setMaxWinAmount(Math.max(rtpDataToPrint.getMaxWinAmount(), accumulator.getMaxWinAmount()));
+        rtpDataToPrint.setTotalHits(rtpDataToPrint.getTotalHits() + accumulator.getMatchedNumbersCount());
+        rtpDataToPrint.setTotalSpotSelectedCount(rtpDataToPrint.getTotalSpotSelectedCount() + accumulator.getNumberOfSpots());
 
         System.out.println("Completed batch " + batchNum + "/" + totalBatches
-                + " (" + roundsThisBatch + " rounds) — running total wins: " + totalWins);
+                + " (" + roundsThisBatch + " rounds) — running total wins: " + rtpDataToPrint.getTotalWins());
     }
 
     private void runTask(long eachRun, Random random, BatchAccumulator accumulator) {
@@ -120,16 +126,30 @@ public class RTPTestSingle {
 
     private void printFinalResult() {
         BigDecimal totalStake = stakeValue.multiply(BigDecimal.valueOf(totalRuns));
-        int totalWin = this.totalWins.intValue();
+        int totalWin = rtpDataToPrint.getTotalWins().intValue();
         double rtpPercentage = (double) totalWin / totalStake.intValue() * 100;
 
         System.out.println("----------------------------------------");
         System.out.println("Total Stake: " + totalStake);
         System.out.println("Total Win: " + totalWin);
         System.out.println("RTP: " + rtpPercentage + "% ");
+        System.out.println("Hit rate: " + ((double) rtpDataToPrint.getTotalHitCount() / totalRuns * 100) + "%");
+        System.out.println("Matched 2 Numbers Count: " + rtpDataToPrint.getTotalHits());
+        System.out.println("Total Spot Selected Count: " + rtpDataToPrint.getTotalSpotSelectedCount());
+        System.out.println("Spot 2 Hit Rate: " + ((double) rtpDataToPrint.getTotalHits() / rtpDataToPrint.getTotalSpotSelectedCount() * 100) + "%");
+        System.out.println("Max Win Amount: " + rtpDataToPrint.getMaxWinAmount());
 
         long endTime = System.currentTimeMillis();
-        System.out.println("Time taken: " + (endTime - startingTime) / 1000.0 + " seconds");
+        long seconds = (endTime - startingTime) / 1000;
+        System.out.println("Time taken: " + seconds + " seconds");
+
+        try {
+            RtpExcelWriter.write("RTP_Result_500M.xlsx", totalRuns, totalStake,
+                   rtpDataToPrint);
+            System.out.println("Excel written: RTP_Result_500M.xlsx");
+        } catch (IOException e) {
+            System.out.println("Failed to write Excel: " + e.getMessage());
+        }
     }
 
     /**
@@ -141,6 +161,10 @@ public class RTPTestSingle {
         private final int expectedThreads;
         private int finishedThreads = 0;
         private BigDecimal winAmount = BigDecimal.ZERO;
+        private int hitCount = 0;
+        private double maxWinAmount = 0;
+        private int matchedNumbersCount = 0;
+        private int numberOfSpots = 0;
 
         BatchAccumulator(int expectedThreads) {
             this.expectedThreads = expectedThreads;
@@ -148,11 +172,33 @@ public class RTPTestSingle {
 
         synchronized void add(RtpResult result) {
             winAmount = winAmount.add(result.getWinAmount());
+            hitCount = hitCount + result.getHitCount();
+            if(result.getMaxWinAmount() > maxWinAmount){
+                maxWinAmount = result.getMaxWinAmount();
+            }
             finishedThreads++;
+            matchedNumbersCount = matchedNumbersCount + result.getMatchedNumbersCount();
+            numberOfSpots = numberOfSpots + result.getNumberOfSpots();
         }
 
         synchronized BigDecimal getWinAmount() {
             return winAmount;
         }
+
+        synchronized int getHitCount() {
+            return hitCount;
+        }
+        synchronized double getMaxWinAmount() {
+            return maxWinAmount;
+        }
+        synchronized int getMatchedNumbersCount() {
+            return matchedNumbersCount;
+        }
+        synchronized int getNumberOfSpots() {
+            return numberOfSpots;
+        }
+
+
+
     }
 }

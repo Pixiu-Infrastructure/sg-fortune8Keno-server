@@ -16,6 +16,8 @@ public class RtpResult {
     private int numberOfSpots;
 
     private int spot2MatchedCount;
+    private int hitCount;
+    private double maxWinAmount;
 
 
 }

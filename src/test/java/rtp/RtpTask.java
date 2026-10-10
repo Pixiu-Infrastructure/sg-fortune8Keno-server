@@ -40,16 +40,29 @@ public class RtpTask implements Callable<RoundResult> {
         SpinResult baseGamePlayResponse;
 
         baseGamePlayResponse = gamePlayService.play(playRequest, expectedRTP);
+        RoundResult result = getRoundResult(baseGamePlayResponse);
 
-
-        RoundResult result = new RoundResult();
-        result.setWinAmount(baseGamePlayResponse.getPrizeAmount());
-        result.setMultiplier(baseGamePlayResponse.getResult().getMultiplier());
         if (baseGamePlayResponse.getError() != null && baseGamePlayResponse.getError().ifPresent()) {
             throw new RuntimeException("Error in game play response: " + baseGamePlayResponse.getError().getMessage());
         }
         return result;
 
+    }
+
+    private static RoundResult getRoundResult(SpinResult baseGamePlayResponse) {
+        int matchedNumberCount = baseGamePlayResponse.getResult().getHits();
+        int playerSelectedNumberCount =  baseGamePlayResponse.getResult().getSelectedNumbers().size();
+
+
+        RoundResult result = new RoundResult();
+        result.setWinAmount(baseGamePlayResponse.getPrizeAmount());
+        result.setMultiplier(baseGamePlayResponse.getResult().getMultiplier());
+
+        result.setHitCount(matchedNumberCount);
+        result.setPlayerSelectedNumberCount(playerSelectedNumberCount);
+        result.setLastServerNum(baseGamePlayResponse.getResult().getLastNumber());
+        result.setMultiplierTriggered(baseGamePlayResponse.getResult().getMultiplier() > 1);
+        return result;
     }
 
 

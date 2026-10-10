@@ -7,6 +7,11 @@
       <option name="url" value="https://maven.pkg.github.com/Prachisingh/game-server-gdk" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="github" />
+      <option name="name" value="github" />
+      <option name="url" value="https://maven.pkg.github.com/hungrybeargaming/bclc-game-server-gdk" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="central" />
       <option name="name" value="Maven Central repository" />
       <option name="url" value="https://repo1.maven.org/maven2" />

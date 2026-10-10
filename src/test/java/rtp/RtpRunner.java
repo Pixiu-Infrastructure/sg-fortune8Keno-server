@@ -24,7 +24,7 @@ public class RtpRunner implements Callable<RtpResult> {
     @Builder.Default
     private final int maxRunsToReportSTD = 1_000_000_0;
     private BigDecimal expectedRTP;
-    private Random random ;
+    private Random random;
 
     private GamePlayService gamePlayService;
 
@@ -46,9 +46,6 @@ public class RtpRunner implements Callable<RtpResult> {
     private int totalRuns;
 
 
-
-
-
     public RtpResult call() throws Exception {
 
 
@@ -57,6 +54,12 @@ public class RtpRunner implements Callable<RtpResult> {
         initialCommand.setStakeAmount(stake);
 
         BigDecimal totalWins = BigDecimal.ZERO;
+        int totalHitCount = 0;
+        int spot2SelectedCount = 0;
+        int matched2NumbersCount = 0;
+
+        double maxWin =0;
+
 
         for (int i = 1; i <= totalRuns; i++) {
 
@@ -70,18 +73,32 @@ public class RtpRunner implements Callable<RtpResult> {
 
             totalWins = totalWins
                     .add(BigDecimal.valueOf(roundResult.getWinAmount()));
+            if (roundResult.getWinAmount() > 0) {
+                totalHitCount = totalHitCount + 1;
+            }
+            if(roundResult.getWinAmount() > maxWin ){
+                maxWin = roundResult.getWinAmount();
+            }
+            if(roundResult.getPlayerSelectedNumberCount() == 2 && roundResult.getHitCount() == 2){
+               matched2NumbersCount++;
+            }
+            if(roundResult.getPlayerSelectedNumberCount() == 2){
+                spot2SelectedCount++;
+            }
 
-           // System.out.println("Round: " + i + " Win Amount: " + roundResult.getWinAmount() + " Total Wins: " + totalWins);
+            // System.out.println("Round: " + i + " Win Amount: " + roundResult.getWinAmount() + " Total Wins: " + totalWins);
 
         }
 
 
+        return new RtpResult()
+                .setMaxWinAmount(maxWin)
+                .setHitCount(totalHitCount)
+                .setWinAmount(totalWins)
+                .setMatchedNumbersCount(matched2NumbersCount)
+                .setNumberOfSpots(spot2SelectedCount);
 
-
-            return new RtpResult()
-                    .setWinAmount(totalWins);
-
-        }
     }
+}
 
 
