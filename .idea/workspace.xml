@@ -5,14 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f7b39db3-f5c6-4bf1-aa90-9835325c1f88" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RTP_Result_500M.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RTPDataToPrint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPDataToPrint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RTPTestSingle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RoundResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpExcelWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpExcelWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/rtp/RtpRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/config/GameConfigService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/config/GameConfigService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/config/rtp/GameMathConfigImp_90_5.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pixiu/fortune8keno/fortune8keno/config/rtp/GameMathSeparateImp_96.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

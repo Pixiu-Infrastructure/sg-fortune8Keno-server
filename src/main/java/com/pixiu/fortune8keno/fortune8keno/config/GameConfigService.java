@@ -32,9 +32,7 @@ public class GameConfigService {
     String buildVersion = "build.version";
     gameConfigurationMap = Map.of(
             RTP.VARIANT_92, new GameConfiguration(this.gameMathConfigCommon, new GameMathConfigImp_92()).setEngineVersion(gitProperties.get(buildVersion)).setGameVersion(version),
-            RTP.VARIANT_86, new GameConfiguration(this.gameMathConfigCommon, new GameMathConfigImp_86()).setEngineVersion(gitProperties.get(buildVersion)).setGameVersion(version),
-            RTP.VARIANT_96, new GameConfiguration(this.gameMathConfigCommon, new GameMathSeparateImp_96()).setEngineVersion(gitProperties.get(buildVersion)).setGameVersion(version),
-            RTP.VARIANT_90_5, new GameConfiguration(this.gameMathConfigCommon, new GameMathConfigImp_90_5()).setEngineVersion(gitProperties.get(buildVersion)).setGameVersion(version)
+            RTP.VARIANT_86, new GameConfiguration(this.gameMathConfigCommon, new GameMathConfigImp_86()).setEngineVersion(gitProperties.get(buildVersion)).setGameVersion(version)
     );
   }
 
