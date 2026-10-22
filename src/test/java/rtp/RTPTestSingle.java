@@ -17,11 +17,11 @@ public class RTPTestSingle {
     private static int forceNumOfThreads = 0; // set this greater than 0 will force to run range check in number of threads/times
     private int availableThreads;
 
-    private final BigDecimal rtp = RTP.VARIANT_92;
+    private final BigDecimal rtp = RTP.VARIANT_86;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 100_000_00L;
+    private final long totalRuns = 500_000_000L;
 
 
 
@@ -123,6 +123,16 @@ public class RTPTestSingle {
         rtpDataToPrint.setMatched10NumbersCount(rtpDataToPrint.getMatched10NumbersCount() + accumulator.getMatched10NumbersCount());
         rtpDataToPrint.setSpot10SelectedCount(rtpDataToPrint.getSpot10SelectedCount() + accumulator.getSpot10SelectedCount());
 
+        rtpDataToPrint.setTotalWinSpot2(rtpDataToPrint.getTotalWinSpot2().add(accumulator.totalWinSpot2));
+        rtpDataToPrint.setTotalWinSpot3(rtpDataToPrint.getTotalWinSpot3().add(accumulator.totalWinSpot3));
+        rtpDataToPrint.setTotalWinSpot4(rtpDataToPrint.getTotalWinSpot4().add(accumulator.totalWinSpot4));
+        rtpDataToPrint.setTotalWinSpot5(rtpDataToPrint.getTotalWinSpot5().add(accumulator.totalWinSpot5));
+        rtpDataToPrint.setTotalWinSpot6(rtpDataToPrint.getTotalWinSpot6().add(accumulator.totalWinSpot6));
+        rtpDataToPrint.setTotalWinSpot7(rtpDataToPrint.getTotalWinSpot7().add(accumulator.totalWinSpot7));
+        rtpDataToPrint.setTotalWinSpot8(rtpDataToPrint.getTotalWinSpot8().add(accumulator.totalWinSpot8));
+        rtpDataToPrint.setTotalWinSpot9(rtpDataToPrint.getTotalWinSpot9().add(accumulator.totalWinSpot9));
+        rtpDataToPrint.setTotalWinSpot10(rtpDataToPrint.getTotalWinSpot10().add(accumulator.totalWinSpot10));
+
         System.out.println("Completed batch " + batchNum + "/" + totalBatches
                 + " (" + roundsThisBatch + " rounds) — running total wins: " + rtpDataToPrint.getTotalWins());
     }
@@ -146,6 +156,15 @@ public class RTPTestSingle {
         BigDecimal totalStake = stakeValue.multiply(BigDecimal.valueOf(totalRuns));
         int totalWin = rtpDataToPrint.getTotalWins().intValue();
         double rtpPercentage = (double) totalWin / totalStake.intValue() * 100;
+        double spot2RTPPercentage = rtpDataToPrint.getTotalWinSpot2().doubleValue() / rtpDataToPrint.getTotalSpotSelectedCount() * 100;
+        double spot3RTPPercentage = rtpDataToPrint.getTotalWinSpot3().doubleValue() / rtpDataToPrint.getSpot3SelectedCount() * 100;
+        double spot4RTPPercentage = rtpDataToPrint.getTotalWinSpot4().doubleValue() / rtpDataToPrint.getSpot4SelectedCount() * 100;
+        double spot5RTPPercentage = rtpDataToPrint.getTotalWinSpot5().doubleValue() / rtpDataToPrint.getSpot5SelectedCount() * 100;
+        double spot6RTPPercentage = rtpDataToPrint.getTotalWinSpot6().doubleValue() / rtpDataToPrint.getSpot6SelectedCount() * 100;
+        double spot7RTPPercentage = rtpDataToPrint.getTotalWinSpot7().doubleValue() / rtpDataToPrint.getSpot7SelectedCount() * 100;
+        double spot8RTPPercentage = rtpDataToPrint.getTotalWinSpot8().doubleValue() / rtpDataToPrint.getSpot8SelectedCount() * 100;
+        double spot9RTPPercentage = rtpDataToPrint.getTotalWinSpot9().doubleValue() / rtpDataToPrint.getSpot9SelectedCount() * 100;
+        double spot10RTPPercentage = rtpDataToPrint.getTotalWinSpot10().doubleValue() / rtpDataToPrint.getSpot10SelectedCount() * 100;
 
         System.out.println("----------------------------------------");
         System.out.println("Total Stake: " + totalStake);
@@ -156,6 +175,17 @@ public class RTPTestSingle {
         System.out.println("Total Spot Selected Count: " + rtpDataToPrint.getTotalSpotSelectedCount());
         System.out.println("Spot 2 Hit Rate: " + ((double) rtpDataToPrint.getTotalHits() / rtpDataToPrint.getTotalSpotSelectedCount() * 100) + "%");
         System.out.println("Max Win Amount: " + rtpDataToPrint.getMaxWinAmount());
+
+        System.out.println("spot2RTPPercentage: " + spot2RTPPercentage + "%");
+        System.out.println("spot3RTPPercentage: " + spot3RTPPercentage + "%");
+        System.out.println("spot4RTPPercentage: " + spot4RTPPercentage + "%");
+        System.out.println("spot5RTPPercentage: " + spot5RTPPercentage + "%");
+        System.out.println("spot6RTPPercentage: " + spot6RTPPercentage + "%");
+        System.out.println("spot7RTPPercentage: " + spot7RTPPercentage + "%");
+        System.out.println("spot8RTPPercentage: " + spot8RTPPercentage + "%");
+        System.out.println("spot9RTPPercentage: " + spot9RTPPercentage + "%");
+        System.out.println("spot10RTPPercentage: " + spot10RTPPercentage + "%");
+
 
         System.out.println("Matched 3 Numbers Count: " + rtpDataToPrint.getMatched3NumbersCount());
         System.out.println("Spot 3 Selected Count: " + rtpDataToPrint.getSpot3SelectedCount());
@@ -231,6 +261,16 @@ public class RTPTestSingle {
         int spot10SelectedCount = 0;
         int matched10NumbersCount = 0;
 
+        BigDecimal totalWinSpot2 =  BigDecimal.ZERO;
+        BigDecimal totalWinSpot3 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot4 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot5 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot6 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot7 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot8 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot9 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot10 = BigDecimal.ZERO;
+
         BatchAccumulator(int expectedThreads) {
             this.expectedThreads = expectedThreads;
         }
@@ -261,6 +301,16 @@ public class RTPTestSingle {
             matched9NumbersCount = matched9NumbersCount + result.getMatched9SelectedCount();
             spot10SelectedCount = spot10SelectedCount + result.getSpot10SelectedCount();
             matched10NumbersCount = matched10NumbersCount + result.getMatched10SelectedCount();
+
+            totalWinSpot2 = totalWinSpot2.add(result.getTotalWinSpot2());
+            totalWinSpot3 = totalWinSpot3.add(result.getTotalWinSpot3());
+            totalWinSpot4 = totalWinSpot4.add(result.getTotalWinSpot4());
+            totalWinSpot5 = totalWinSpot5.add(result.getTotalWinSpot5());
+            totalWinSpot6 = totalWinSpot6.add(result.getTotalWinSpot6());
+            totalWinSpot7 = totalWinSpot7.add(result.getTotalWinSpot7());
+            totalWinSpot8 = totalWinSpot8.add(result.getTotalWinSpot8());
+            totalWinSpot9 = totalWinSpot9.add(result.getTotalWinSpot9());
+            totalWinSpot10 = totalWinSpot10.add(result.getTotalWinSpot10());
 
 
         }

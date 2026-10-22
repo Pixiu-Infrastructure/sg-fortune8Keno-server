@@ -33,4 +33,14 @@ public class RTPDataToPrint {
     int matched9NumbersCount = 0;
     int spot10SelectedCount = 0;
     int matched10NumbersCount = 0;
+
+    BigDecimal totalWinSpot2 =  BigDecimal.ZERO;
+    BigDecimal totalWinSpot3 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot4 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot5 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot6 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot7 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot8 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot9 = BigDecimal.ZERO;
+    BigDecimal totalWinSpot10 = BigDecimal.ZERO;
 }

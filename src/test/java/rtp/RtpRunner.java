@@ -57,20 +57,16 @@ public class RtpRunner implements Callable<RtpResult> {
         int totalHitCount = 0;
         int spot2SelectedCount = 0;
         int matched2NumbersCount = 0;
-
         int spot3SelectedCount = 0;
         int matched3NumbersCount = 0;
-
         int spot4SelectedCount = 0;
         int matched4NumbersCount = 0;
-
         int spot5SelectedCount = 0;
         int matched5NumbersCount = 0;
         int spot6SelectedCount = 0;
         int matched6NumbersCount = 0;
         int spot7SelectedCount = 0;
         int matched7SelectedCount = 0;
-
         int spot8SelectedCount = 0;
         int matched8SelectedCount = 0;
         int spot9SelectedCount = 0;
@@ -78,6 +74,15 @@ public class RtpRunner implements Callable<RtpResult> {
         int spot10SelectedCount = 0;
         int matched10SelectedCount = 0;
 
+        BigDecimal totalWinSpot2 =  BigDecimal.ZERO;
+        BigDecimal totalWinSpot3 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot4 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot5 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot6 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot7 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot8 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot9 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot10 = BigDecimal.ZERO;
 
         double maxWin =0;
 
@@ -105,6 +110,8 @@ public class RtpRunner implements Callable<RtpResult> {
             }
             if(playerSelectedCount == 2 && roundHitCount == 2){
                matched2NumbersCount++;
+               totalWinSpot2 = totalWinSpot2.add(BigDecimal.valueOf(roundResult.getWinAmount()));
+
             }
             if(playerSelectedCount == 2){
                 spot2SelectedCount++;
@@ -112,18 +119,21 @@ public class RtpRunner implements Callable<RtpResult> {
 
             if(playerSelectedCount == 3 && roundHitCount > 1 && roundHitCount < 4){
                 matched3NumbersCount++;
+                totalWinSpot3 = totalWinSpot3.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 3){
                 spot3SelectedCount++;
             }
             if(playerSelectedCount == 4 && roundHitCount > 1 && roundHitCount < 5){
                 matched4NumbersCount++;
+                totalWinSpot4 = totalWinSpot4.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 4){
                 spot4SelectedCount++;
             }
             if(playerSelectedCount == 5 && roundHitCount > 2 && roundHitCount < 6){
                 matched5NumbersCount++;
+                totalWinSpot5 = totalWinSpot5.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 5){
                 spot5SelectedCount++;
@@ -131,18 +141,21 @@ public class RtpRunner implements Callable<RtpResult> {
 
             if(playerSelectedCount == 6 && roundHitCount > 2 && roundHitCount < 7){
                 matched6NumbersCount++;
+                totalWinSpot6 = totalWinSpot6.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 6){
                 spot6SelectedCount++;
             }
             if(playerSelectedCount == 7 && roundHitCount > 2 && roundHitCount < 8){
                 matched7SelectedCount++;
+                totalWinSpot7 = totalWinSpot7.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 7){
                 spot7SelectedCount++;
             }
             if(playerSelectedCount == 8 && roundHitCount > 3 && roundHitCount < 9){
                 matched8SelectedCount++;
+                totalWinSpot8 = totalWinSpot8.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 8){
                 spot8SelectedCount++;
@@ -150,12 +163,14 @@ public class RtpRunner implements Callable<RtpResult> {
 
             if(playerSelectedCount == 9 && roundHitCount > 3 && roundHitCount < 10){
                 matched9SelectedCount++;
+                totalWinSpot9 = totalWinSpot9.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 9) {
                 spot9SelectedCount++;
             }
             if(playerSelectedCount == 10 && roundHitCount > 3 && roundHitCount < 11){
                 matched10SelectedCount++;
+                totalWinSpot10 = totalWinSpot10.add(BigDecimal.valueOf(roundResult.getWinAmount()));
             }
             if (playerSelectedCount == 10){
                 spot10SelectedCount++;
@@ -185,7 +200,17 @@ public class RtpRunner implements Callable<RtpResult> {
                 .setSpot9SelectedCount(spot9SelectedCount)
                 .setMatched9SelectedCount(matched9SelectedCount)
                 .setSpot10SelectedCount(spot10SelectedCount)
-                .setMatched10SelectedCount(matched10SelectedCount);
+                .setMatched10SelectedCount(matched10SelectedCount)
+                .setTotalWinSpot2(totalWinSpot2)
+                .setTotalWinSpot3(totalWinSpot3)
+                .setTotalWinSpot4(totalWinSpot4)
+                .setTotalWinSpot5(totalWinSpot5)
+                .setTotalWinSpot6(totalWinSpot6)
+                .setTotalWinSpot7(totalWinSpot7)
+                .setTotalWinSpot8(totalWinSpot8)
+                .setTotalWinSpot9(totalWinSpot9)
+                .setTotalWinSpot10(totalWinSpot10)
+                ;
 
     }
 }
