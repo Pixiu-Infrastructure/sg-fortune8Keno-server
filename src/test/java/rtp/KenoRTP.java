@@ -11,6 +11,7 @@ import com.pixiu.fortune8keno.fortune8keno.results.SpinResult;
 
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -28,7 +29,7 @@ public class KenoRTP {
 
     static BigDecimal stakeValue = BigDecimal.ONE; // Assuming a fixed stake of 1 unit per round
 
-    static double totalWin = 0;
+    static BigDecimal totalWin = BigDecimal.ZERO;
     static int totalSpot2Count = 0;
     static int roundPerThread = rounds / numberOfAvailableThreads;
     static long startingTime;
@@ -61,7 +62,7 @@ public class KenoRTP {
 
 
 
-    private static double playGame() throws IllegalAccessException {
+    private static BigDecimal playGame() throws IllegalAccessException {
         Random random = new Random(); // per thread
 
 
@@ -70,7 +71,7 @@ public class KenoRTP {
 
         SpinGame spinGame ;
 
-        double totalWinPerThread = 0;
+        BigDecimal totalWinPerThread = BigDecimal.ZERO;
 
 
 
@@ -84,12 +85,12 @@ public class KenoRTP {
             SpinResult spinResult =  gamePlayService.play(playRequest, BigDecimal.valueOf(0.86));
 
 
-            double winAmount = spinResult.getPrizeAmount();
-            if (winAmount > 0) {
+            BigDecimal winAmount = spinResult.getPrizeAmount();
+            if (winAmount.compareTo(BigDecimal.ZERO) > 0) {
                 countWin++;
             }
 
-            totalWinPerThread += winAmount;
+            totalWinPerThread = totalWinPerThread.add(winAmount);
         }
 //        int totalStake = stakeValue.intValue() * roundPerThread;
 //        double rtp = (double) totalWinPerThread / totalStake * 100;
@@ -104,13 +105,13 @@ public class KenoRTP {
         return totalWinPerThread;
     }
 
-    private static synchronized void addToRtpResult(double result) {
+    private static synchronized void addToRtpResult(BigDecimal result) {
         finishedThreadCount++;
-        totalWin += result;
+        totalWin = totalWin.add(result);
 
         if (finishedThreadCount == numberOfAvailableThreads) {
             int totalStake = stakeValue.intValue() * rounds;
-            System.out.println("All threads finished. Total RTP result: " + (totalWin / totalStake * 100) + "%");
+            System.out.println("All threads finished. Total RTP result: " + (totalWin.divide(BigDecimal.valueOf(totalStake), 4, RoundingMode.HALF_UP).doubleValue() * 100) + "%");
 
             long endTime = System.currentTimeMillis();
             System.out.println("Time taken: " + (endTime - startingTime) / 1000.0 + " seconds");

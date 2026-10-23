@@ -1,5 +1,6 @@
 package com.pixiu.fortune8keno.fortune8keno.play.spin;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 public class KenoPayout {
@@ -9,10 +10,10 @@ public class KenoPayout {
         this.payoutTable = payoutTable;
     }
 
-    public double calculateWinningAmount(int stake, int matchedNumbers) {
+    public BigDecimal calculateWinningAmount(BigDecimal stake, int matchedNumbers) {
         if (payoutTable.containsKey(matchedNumbers)) {
-            return (int) (stake * payoutTable.get(matchedNumbers));
+            return stake.multiply(BigDecimal.valueOf(payoutTable.get(matchedNumbers)));
         }
-        return 0; // No payout for unmatched numbers
+        return BigDecimal.ZERO; // No payout for unmatched numbers
     }
 }

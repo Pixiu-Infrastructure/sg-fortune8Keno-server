@@ -20,6 +20,6 @@ public class GameStateDTO {
     private Set<Integer> selectedNumbers;
     private Set<Integer> drawnNumbers;
     private Set<Integer> matchedNumbers;
-    private Double winAmount;
+    private BigDecimal winAmount;
     private BigDecimal stake;
 }

@@ -29,29 +29,158 @@ public class RtpExcelWriter {
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(totalRuns), new MathContext(4, RoundingMode.HALF_EVEN));
 
-        BigDecimal spot2HitRate = BigDecimal.valueOf(rtpDataToPrint.getTotalHits())
+        BigDecimal spot2HitRate = BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2Hits())
                 .multiply(BigDecimal.valueOf(100))
-                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpotSelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+
+        BigDecimal spot0HitRateFor2Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched0NumberCount_spot2())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+
+        BigDecimal spot1HitRateFor2Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched1NumberCount_spot2())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
 
         BigDecimal spot3HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched3NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal spot0HitRateFor3Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot3())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor3Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot3())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor3Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot3())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor3Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot3())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+
 
         BigDecimal spot4HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched4NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+
+        BigDecimal spot0HitRateFor4Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot4())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor4Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot4())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor4Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot4())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor4Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot4())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot4HitRateFor4Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_4_NumberCount_spot4())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+
         BigDecimal spot5HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched5NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal spot0HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot4HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_4_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot5HitRateFor5Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_5_NumberCount_spot5())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
         BigDecimal spot6HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched6NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal spot0HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot4HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_4_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot5HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_5_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot6HitRateFor6Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_6_NumberCount_spot6())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
         BigDecimal spot7HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched7NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal spot0HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot4HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_4_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot5HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_5_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot6HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_6_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot7HitRateFor7Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_7_NumberCount_spot7())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot7SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+
         BigDecimal spot8HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched8NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal spot0HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_0_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot1HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_1_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot2HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_2_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot3HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_3_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot4HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_4_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot5HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_5_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot6HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_6_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot7HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_7_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(6, RoundingMode.HALF_EVEN));
+        BigDecimal spot8HitRateFor8Spots = BigDecimal.valueOf(rtpDataToPrint.getMatched_8_NumberCount_spot8())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot8SelectedCount()),  new MathContext(8, RoundingMode.HALF_EVEN));
         BigDecimal spot9HitRate = BigDecimal.valueOf(rtpDataToPrint.getMatched9NumbersCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot9SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
@@ -62,7 +191,7 @@ public class RtpExcelWriter {
         BigDecimal spot2RTPPercentage = totalStake.signum() == 0
                 ? BigDecimal.ZERO
                 : rtpDataToPrint.getTotalWinSpot2().multiply(BigDecimal.valueOf(100))
-                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpotSelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
+                .divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
 
         BigDecimal spot3RTPPercentage = totalStake.signum() == 0
                 ? BigDecimal.ZERO
@@ -112,11 +241,11 @@ public class RtpExcelWriter {
             createCell(header, 0, "Metric", headerStyle);
             createCell(header, 1, "Value", headerStyle);
             // Data rows
-            addRow(sheet, r++, "Total Rounds", totalRuns);
-            addRow(sheet, r++, "Total Stake", totalStake.doubleValue());
-            addRow(sheet, r++, "Total Wins", rtpDataToPrint.getTotalWins().doubleValue());
-            addRow(sheet, r++, "RTP (%)", rtpPercent.doubleValue());
-            addRow(sheet, r++, "Hit rate", hitRate.doubleValue());
+            addRow(sheet, r++, "Total Rounds", BigDecimal.valueOf(totalRuns));
+            addRow(sheet, r++, "Total Stake", totalStake);
+            addRow(sheet, r++, "Total Wins", rtpDataToPrint.getTotalWins());
+            addRow(sheet, r++, "RTP (%)", rtpPercent);
+            addRow(sheet, r++, "Hit rate", hitRate);
             addRow(sheet, r++, "Max Win Amount", rtpDataToPrint.getMaxWinAmount());
 
             Row header2 = sheet.createRow(r++);
@@ -125,16 +254,131 @@ public class RtpExcelWriter {
             createCell(header2, 2, "RTP (%)", headerStyle);
 
             //data rows for second header
-            addRow(sheet, r++, " Spot 2 ", spot2HitRate.doubleValue(), spot2RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 3 ", spot3HitRate.doubleValue(), spot3RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 4 ", spot4HitRate.doubleValue(), spot4RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 5 ", spot5HitRate.doubleValue(), spot5RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 6 ", spot6HitRate.doubleValue(), spot6RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 7 ", spot7HitRate.doubleValue(), spot7RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 8 ", spot8HitRate.doubleValue(), spot8RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 9 ", spot9HitRate.doubleValue(), spot9RTPPercentage.doubleValue());
-            addRow(sheet, r++, " Spot 10 ", spot10HitRate.doubleValue(), spot10RTPPercentage.doubleValue());
+            addRow(sheet, r++, " Spot 2 ", spot2HitRate, spot2RTPPercentage);
+            addRow(sheet, r++, " Spot 3 ", spot3HitRate, spot3RTPPercentage);
+            addRow(sheet, r++, " Spot 4 ", spot4HitRate, spot4RTPPercentage);
+            addRow(sheet, r++, " Spot 5 ", spot5HitRate, spot5RTPPercentage);
+            addRow(sheet, r++, " Spot 6 ", spot6HitRate, spot6RTPPercentage);
+            addRow(sheet, r++, " Spot 7 ", spot7HitRate, spot7RTPPercentage);
+            addRow(sheet, r++, " Spot 8 ", spot8HitRate, spot8RTPPercentage);
+            addRow(sheet, r++, " Spot 9 ", spot9HitRate, spot9RTPPercentage);
+            addRow(sheet, r++, " Spot 10 ", spot10HitRate, spot10RTPPercentage);
 
+            sheet.createRow(r++);
+
+            Row header3 = sheet.createRow(r++);
+
+            createCell(header3, 0, "Spot2 Breakup", headerStyle);
+
+            Row header4 = sheet.createRow(r++);
+
+            createCell(header4, 0, "hits", headerStyle);
+            createCell(header4, 1, "frequency (%)", headerStyle);
+
+
+            //data rows for fourth header
+
+            addRow(sheet, r++, " 0 ", spot0HitRateFor2Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor2Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRate);
+            sheet.createRow(r++);
+
+            Row header5 = sheet.createRow(r++);
+            createCell(header5, 0, "Spot3 Breakup", headerStyle);
+            Row header6 = sheet.createRow(r++);
+            createCell(header6, 0, "hits", headerStyle);
+            createCell(header6, 1, "frequency (%)", headerStyle);
+
+            //data rows for sixth header
+
+            addRow(sheet, r++, " 0 ", spot0HitRateFor3Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor3Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor3Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor3Spots);
+
+            sheet.createRow(r++);
+
+            Row header7 = sheet.createRow(r++);
+            createCell(header7, 0, "Spot4 Breakup", headerStyle);
+            Row header8 = sheet.createRow(r++);
+            createCell(header8, 0, "hits", headerStyle);
+            createCell(header8, 1, "frequency (%)", headerStyle);
+
+            //data rows for eighth header
+            addRow(sheet, r++, " 0 ", spot0HitRateFor4Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor4Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor4Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor4Spots);
+            addRow(sheet, r++, " 4 ", spot4HitRateFor4Spots);
+
+            sheet.createRow(r++);
+            Row header9 = sheet.createRow(r++);
+            createCell(header9, 0, "Spot5 Breakup", headerStyle);
+            Row header10 = sheet.createRow(r++);
+            createCell(header10, 0, "hits", headerStyle);
+            createCell(header10, 1, "frequency (%)", headerStyle);
+
+            //data rows for tenth header
+            addRow(sheet, r++, " 0 ", spot0HitRateFor5Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor5Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor5Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor5Spots);
+            addRow(sheet, r++, " 4 ", spot4HitRateFor5Spots);
+            addRow(sheet, r++, " 5 ", spot5HitRateFor5Spots);
+
+            sheet.createRow(r++);
+            Row header11 = sheet.createRow(r++);
+            createCell(header11, 0, "Spot6 Breakup", headerStyle);
+            Row header12 = sheet.createRow(r++);
+            createCell(header12, 0, "hits", headerStyle);
+            createCell(header12, 1, "frequency (%)", headerStyle);
+
+            //data rows for twelfth header
+
+            addRow(sheet, r++, " 0 ", spot0HitRateFor6Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor6Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor6Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor6Spots);
+            addRow(sheet, r++, " 4 ", spot4HitRateFor6Spots);
+            addRow(sheet, r++, " 5 ", spot5HitRateFor6Spots);
+            addRow(sheet, r++, " 6 ", spot6HitRateFor6Spots);
+
+            sheet.createRow(r++);
+            Row header13 = sheet.createRow(r++);
+            createCell(header13, 0, "Spot7 Breakup", headerStyle);
+            Row header14 = sheet.createRow(r++);
+            createCell(header14, 0, "hits", headerStyle);
+            createCell(header14, 1, "frequency (%)", headerStyle);
+
+            //data rows for fourteenth header
+
+            addRow(sheet, r++, " 0 ", spot0HitRateFor7Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor7Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor7Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor7Spots);
+            addRow(sheet, r++, " 4 ", spot4HitRateFor7Spots);
+            addRow(sheet, r++, " 5 ", spot5HitRateFor7Spots);
+            addRow(sheet, r++, " 6 ", spot6HitRateFor7Spots);
+            addRow(sheet, r++, " 7 ", spot7HitRateFor7Spots);
+
+            sheet.createRow(r++);
+            Row header15 = sheet.createRow(r++);
+            createCell(header15, 0, "Spot8 Breakup", headerStyle);
+            Row header16 = sheet.createRow(r++);
+            createCell(header16, 0, "hits", headerStyle);
+            createCell(header16, 1, "frequency (%)", headerStyle);
+
+            //data rows for sixteenth header
+
+            addRow(sheet, r++, " 0 ", spot0HitRateFor8Spots);
+            addRow(sheet, r++, " 1 ", spot1HitRateFor8Spots);
+            addRow(sheet, r++, " 2 ", spot2HitRateFor8Spots);
+            addRow(sheet, r++, " 3 ", spot3HitRateFor8Spots);
+            addRow(sheet, r++, " 4 ", spot4HitRateFor8Spots);
+            addRow(sheet, r++, " 5 ", spot5HitRateFor8Spots);
+            addRow(sheet, r++, " 6 ", spot6HitRateFor8Spots);
+            addRow(sheet, r++, " 7 ", spot7HitRateFor8Spots);
+            addRow(sheet, r++, " 8 ", spot8HitRateFor8Spots);
 
             sheet.autoSizeColumn(0);
             sheet.autoSizeColumn(1);
@@ -145,17 +389,17 @@ public class RtpExcelWriter {
         }
     }
 
-    private static void addRow(Sheet sheet, int rowIndex, String label, double value, double rtp) {
+    private static void addRow(Sheet sheet, int rowIndex, String label, BigDecimal value, BigDecimal rtp) {
         Row row = sheet.createRow(rowIndex);
         row.createCell(0).setCellValue(label);
-        row.createCell(1).setCellValue(value);
-        row.createCell(2).setCellValue(rtp);
+        row.createCell(1).setCellValue(value.doubleValue());
+        row.createCell(2).setCellValue(rtp.doubleValue());
     }
 
-    private static void addRow(Sheet sheet, int rowIndex, String label, double value) {
+    private static void addRow(Sheet sheet, int rowIndex, String label, BigDecimal value) {
         Row row = sheet.createRow(rowIndex);
         row.createCell(0).setCellValue(label);
-        row.createCell(1).setCellValue(value);
+        row.createCell(1).setCellValue(value.doubleValue());
     }
 
     private static void createCell(Row row, int col, String value, CellStyle style) {

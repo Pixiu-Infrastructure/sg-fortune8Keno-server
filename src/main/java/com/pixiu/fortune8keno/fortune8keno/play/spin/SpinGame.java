@@ -126,14 +126,14 @@ public class SpinGame {
 
 
         Set<Integer> matchedNumbers =  checkMatches(playerNumbers,  uniqueSelectedNumbers);
-        double winningAmount = 0;
+        BigDecimal winningAmount = BigDecimal.ZERO;
         if(checkIfMultiplierTriggered(playerNumbers, lastServerNum)){
             multiplier = 8;
         }
         KenoPayout selectedPayTable =  gameConfiguration.getGameMathConfigSeparate().getKenoPayouts().get(playerNumbers.size());
-        winningAmount = selectedPayTable.calculateWinningAmount(stake.intValue(), matchedNumbers.size());
+        winningAmount = selectedPayTable.calculateWinningAmount(stake, matchedNumbers.size());
 
-        spinResult.setPrizeAmount(winningAmount * multiplier);
+        spinResult.setPrizeAmount(winningAmount.multiply(BigDecimal.valueOf(multiplier)));
 
         StateResult stateResult = new StateResult();
         stateResult.setStake(stake);

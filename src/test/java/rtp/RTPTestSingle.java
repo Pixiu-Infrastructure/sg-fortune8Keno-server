@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,7 +23,7 @@ public class RTPTestSingle {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 500_000_000L;
+    private final long totalRuns = 10_0000_00L;
 
 
 
@@ -101,23 +103,70 @@ public class RTPTestSingle {
 
         rtpDataToPrint.setTotalWins(rtpDataToPrint.getTotalWins().add(accumulator.getWinAmount()));
         rtpDataToPrint.setTotalHitCount(rtpDataToPrint.getTotalHitCount() + accumulator.getHitCount());
-        rtpDataToPrint.setMaxWinAmount(Math.max(rtpDataToPrint.getMaxWinAmount(), accumulator.getMaxWinAmount()));
-        rtpDataToPrint.setTotalHits(rtpDataToPrint.getTotalHits() + accumulator.getMatchedNumbersCount());
-        rtpDataToPrint.setTotalSpotSelectedCount(rtpDataToPrint.getTotalSpotSelectedCount() + accumulator.getNumberOfSpots());
+        rtpDataToPrint.setMaxWinAmount(BigDecimal.valueOf(Math.max(accumulator.getMaxWinAmount().intValue(), rtpDataToPrint.getMaxWinAmount().intValue())));
+        rtpDataToPrint.setTotalSpot2Hits(rtpDataToPrint.getTotalSpot2Hits() + accumulator.getMatchedNumbersCount());
+        rtpDataToPrint.setTotalSpot2SelectedCount(rtpDataToPrint.getTotalSpot2SelectedCount() + accumulator.getNumberOfSpots());
+
+        rtpDataToPrint.setMatched0NumberCount_spot2(rtpDataToPrint.getMatched0NumberCount_spot2() + accumulator.getMatched0NumberCount_spot2());
+        rtpDataToPrint.setMatched1NumberCount_spot2(rtpDataToPrint.getMatched1NumberCount_spot2() + accumulator.getMatched1NumberCount_spot2());
 
         rtpDataToPrint.setMatched3NumbersCount(rtpDataToPrint.getMatched3NumbersCount() + accumulator.getMatched3NumbersCount());
         rtpDataToPrint.setSpot3SelectedCount(rtpDataToPrint.getSpot3SelectedCount() + accumulator.getSpot3SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot3(rtpDataToPrint.getMatched_0_NumberCount_spot3() + accumulator.getMatched0NumberCount_spot3());
+        rtpDataToPrint.setMatched_1_NumberCount_spot3(rtpDataToPrint.getMatched_1_NumberCount_spot3() + accumulator.getMatched1NumberCount_spot3());
+        rtpDataToPrint.setMatched_2_NumberCount_spot3(rtpDataToPrint.getMatched_2_NumberCount_spot3() + accumulator.getMatched2NumberCount_spot3());
+        rtpDataToPrint.setMatched_3_NumberCount_spot3(rtpDataToPrint.getMatched_3_NumberCount_spot3() + accumulator.getMatched3NumberCount_spot3());
+
         rtpDataToPrint.setMatched4NumbersCount(rtpDataToPrint.getMatched4NumbersCount() + accumulator.getMatched4NumbersCount());
         rtpDataToPrint.setSpot4SelectedCount(rtpDataToPrint.getSpot4SelectedCount() + accumulator.getSpot4SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot4(rtpDataToPrint.getMatched_0_NumberCount_spot4() + accumulator.getMatched0NumberCount_spot4());
+        rtpDataToPrint.setMatched_1_NumberCount_spot4(rtpDataToPrint.getMatched_1_NumberCount_spot4() + accumulator.getMatched1NumberCount_spot4());
+        rtpDataToPrint.setMatched_2_NumberCount_spot4(rtpDataToPrint.getMatched_2_NumberCount_spot4() + accumulator.getMatched2NumberCount_spot4());
+        rtpDataToPrint.setMatched_3_NumberCount_spot4(rtpDataToPrint.getMatched_3_NumberCount_spot4() + accumulator.getMatched3NumberCount_spot4());
+        rtpDataToPrint.setMatched_4_NumberCount_spot4(rtpDataToPrint.getMatched_4_NumberCount_spot4() + accumulator.getMatched4NumberCount_spot4());
+
         rtpDataToPrint.setMatched5NumbersCount(rtpDataToPrint.getMatched5NumbersCount() + accumulator.getMatched5NumbersCount());
         rtpDataToPrint.setSpot5SelectedCount(rtpDataToPrint.getSpot5SelectedCount() + accumulator.getSpot5SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot5(rtpDataToPrint.getMatched_0_NumberCount_spot5() + accumulator.getMatched0NumberCount_spot5());
+        rtpDataToPrint.setMatched_1_NumberCount_spot5(rtpDataToPrint.getMatched_1_NumberCount_spot5() + accumulator.getMatched1NumberCount_spot5());
+        rtpDataToPrint.setMatched_2_NumberCount_spot5(rtpDataToPrint.getMatched_2_NumberCount_spot5() + accumulator.getMatched2NumberCount_spot5());
+        rtpDataToPrint.setMatched_3_NumberCount_spot5(rtpDataToPrint.getMatched_3_NumberCount_spot5() + accumulator.getMatched3NumberCount_spot5());
+        rtpDataToPrint.setMatched_4_NumberCount_spot5(rtpDataToPrint.getMatched_4_NumberCount_spot5() + accumulator.getMatched4NumberCount_spot5());
+        rtpDataToPrint.setMatched_5_NumberCount_spot5(rtpDataToPrint.getMatched_5_NumberCount_spot5() + accumulator.getMatched5NumberCount_spot5());
 
         rtpDataToPrint.setMatched6NumbersCount(rtpDataToPrint.getMatched6NumbersCount() + accumulator.getMatched6NumbersCount());
         rtpDataToPrint.setSpot6SelectedCount(rtpDataToPrint.getSpot6SelectedCount() + accumulator.getSpot6SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot6(rtpDataToPrint.getMatched_0_NumberCount_spot6() + accumulator.getMatched0NumberCount_spot6());
+        rtpDataToPrint.setMatched_1_NumberCount_spot6(rtpDataToPrint.getMatched_1_NumberCount_spot6() + accumulator.getMatched1NumberCount_spot6());
+        rtpDataToPrint.setMatched_2_NumberCount_spot6(rtpDataToPrint.getMatched_2_NumberCount_spot6() + accumulator.getMatched2NumberCount_spot6());
+        rtpDataToPrint.setMatched_3_NumberCount_spot6(rtpDataToPrint.getMatched_3_NumberCount_spot6() + accumulator.getMatched3NumberCount_spot6());
+        rtpDataToPrint.setMatched_4_NumberCount_spot6(rtpDataToPrint.getMatched_4_NumberCount_spot6() + accumulator.getMatched4NumberCount_spot6());
+        rtpDataToPrint.setMatched_5_NumberCount_spot6(rtpDataToPrint.getMatched_5_NumberCount_spot6() + accumulator.getMatched5NumberCount_spot6());
+        rtpDataToPrint.setMatched_6_NumberCount_spot6(rtpDataToPrint.getMatched_6_NumberCount_spot6() + accumulator.getMatched6NumberCount_spot6());
+
         rtpDataToPrint.setMatched7NumbersCount(rtpDataToPrint.getMatched7NumbersCount() + accumulator.getMatched7NumbersCount());
         rtpDataToPrint.setSpot7SelectedCount(rtpDataToPrint.getSpot7SelectedCount() + accumulator.getSpot7SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot7(rtpDataToPrint.getMatched_0_NumberCount_spot7() + accumulator.getMatched0NumberCount_spot7());
+        rtpDataToPrint.setMatched_1_NumberCount_spot7(rtpDataToPrint.getMatched_1_NumberCount_spot7() + accumulator.getMatched1NumberCount_spot7());
+        rtpDataToPrint.setMatched_2_NumberCount_spot7(rtpDataToPrint.getMatched_2_NumberCount_spot7() + accumulator.getMatched2NumberCount_spot7());
+        rtpDataToPrint.setMatched_3_NumberCount_spot7(rtpDataToPrint.getMatched_3_NumberCount_spot7() + accumulator.getMatched3NumberCount_spot7());
+        rtpDataToPrint.setMatched_4_NumberCount_spot7(rtpDataToPrint.getMatched_4_NumberCount_spot7() + accumulator.getMatched4NumberCount_spot7());
+        rtpDataToPrint.setMatched_5_NumberCount_spot7(rtpDataToPrint.getMatched_5_NumberCount_spot7() + accumulator.getMatched5NumberCount_spot7());
+        rtpDataToPrint.setMatched_6_NumberCount_spot7(rtpDataToPrint.getMatched_6_NumberCount_spot7() + accumulator.getMatched6NumberCount_spot7());
+        rtpDataToPrint.setMatched_7_NumberCount_spot7(rtpDataToPrint.getMatched_7_NumberCount_spot7() + accumulator.getMatched7NumberCount_spot7());
+
         rtpDataToPrint.setMatched8NumbersCount(rtpDataToPrint.getMatched8NumbersCount() + accumulator.getMatched8NumbersCount());
         rtpDataToPrint.setSpot8SelectedCount(rtpDataToPrint.getSpot8SelectedCount() + accumulator.getSpot8SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot8(rtpDataToPrint.getMatched_0_NumberCount_spot8() + accumulator.getMatched0NumberCount_spot8());
+        rtpDataToPrint.setMatched_1_NumberCount_spot8(rtpDataToPrint.getMatched_1_NumberCount_spot8() + accumulator.getMatched1NumberCount_spot8());
+        rtpDataToPrint.setMatched_2_NumberCount_spot8(rtpDataToPrint.getMatched_2_NumberCount_spot8() + accumulator.getMatched2NumberCount_spot8());
+        rtpDataToPrint.setMatched_3_NumberCount_spot8(rtpDataToPrint.getMatched_3_NumberCount_spot8() + accumulator.getMatched3NumberCount_spot8());
+        rtpDataToPrint.setMatched_4_NumberCount_spot8(rtpDataToPrint.getMatched_4_NumberCount_spot8() + accumulator.getMatched4NumberCount_spot8());
+        rtpDataToPrint.setMatched_5_NumberCount_spot8(rtpDataToPrint.getMatched_5_NumberCount_spot8() + accumulator.getMatched5NumberCount_spot8());
+        rtpDataToPrint.setMatched_6_NumberCount_spot8(rtpDataToPrint.getMatched_6_NumberCount_spot8() + accumulator.getMatched6NumberCount_spot8());
+        rtpDataToPrint.setMatched_7_NumberCount_spot8(rtpDataToPrint.getMatched_7_NumberCount_spot8() + accumulator.getMatched7NumberCount_spot8());
+        rtpDataToPrint.setMatched_8_NumberCount_spot8(rtpDataToPrint.getMatched_8_NumberCount_spot8() + accumulator.getMatched8NumberCount_spot8());
+
         rtpDataToPrint.setMatched9NumbersCount(rtpDataToPrint.getMatched9NumbersCount() + accumulator.getMatched9NumbersCount());
         rtpDataToPrint.setSpot9SelectedCount(rtpDataToPrint.getSpot9SelectedCount() + accumulator.getSpot9SelectedCount());
         rtpDataToPrint.setMatched10NumbersCount(rtpDataToPrint.getMatched10NumbersCount() + accumulator.getMatched10NumbersCount());
@@ -154,13 +203,16 @@ public class RTPTestSingle {
 
     private void printFinalResult() {
         BigDecimal totalStake = stakeValue.multiply(BigDecimal.valueOf(totalRuns));
-        int totalWin = rtpDataToPrint.getTotalWins().intValue();
-        double rtpPercentage = (double) totalWin / totalStake.intValue() * 100;
-        double spot2RTPPercentage = rtpDataToPrint.getTotalWinSpot2().doubleValue() / rtpDataToPrint.getTotalSpotSelectedCount() * 100;
-        double spot3RTPPercentage = rtpDataToPrint.getTotalWinSpot3().doubleValue() / rtpDataToPrint.getSpot3SelectedCount() * 100;
-        double spot4RTPPercentage = rtpDataToPrint.getTotalWinSpot4().doubleValue() / rtpDataToPrint.getSpot4SelectedCount() * 100;
-        double spot5RTPPercentage = rtpDataToPrint.getTotalWinSpot5().doubleValue() / rtpDataToPrint.getSpot5SelectedCount() * 100;
-        double spot6RTPPercentage = rtpDataToPrint.getTotalWinSpot6().doubleValue() / rtpDataToPrint.getSpot6SelectedCount() * 100;
+        BigDecimal totalWin = rtpDataToPrint.getTotalWins();
+
+        BigDecimal rtpPercentage = totalWin.multiply(BigDecimal.valueOf(100))
+                .divide(totalStake,  new MathContext(4, RoundingMode.HALF_EVEN));
+//        BigDecimal rtpPercentage =  totalWin.divide(totalStake, 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal spot2RTPPercentage = rtpDataToPrint.getTotalWinSpot2().divide(BigDecimal.valueOf(rtpDataToPrint.getTotalSpot2SelectedCount()), 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal spot3RTPPercentage = rtpDataToPrint.getTotalWinSpot3().divide(BigDecimal.valueOf(rtpDataToPrint.getSpot3SelectedCount()), 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal spot4RTPPercentage = rtpDataToPrint.getTotalWinSpot4().divide(BigDecimal.valueOf(rtpDataToPrint.getSpot4SelectedCount()), 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal spot5RTPPercentage = rtpDataToPrint.getTotalWinSpot5().divide(BigDecimal.valueOf(rtpDataToPrint.getSpot5SelectedCount()), 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
+        BigDecimal spot6RTPPercentage = rtpDataToPrint.getTotalWinSpot6().divide(BigDecimal.valueOf(rtpDataToPrint.getSpot6SelectedCount()), 2, BigDecimal.ROUND_HALF_UP).multiply(BigDecimal.valueOf(100));
         double spot7RTPPercentage = rtpDataToPrint.getTotalWinSpot7().doubleValue() / rtpDataToPrint.getSpot7SelectedCount() * 100;
         double spot8RTPPercentage = rtpDataToPrint.getTotalWinSpot8().doubleValue() / rtpDataToPrint.getSpot8SelectedCount() * 100;
         double spot9RTPPercentage = rtpDataToPrint.getTotalWinSpot9().doubleValue() / rtpDataToPrint.getSpot9SelectedCount() * 100;
@@ -171,9 +223,9 @@ public class RTPTestSingle {
         System.out.println("Total Win: " + totalWin);
         System.out.println("RTP: " + rtpPercentage + "% ");
         System.out.println("Hit rate: " + ((double) rtpDataToPrint.getTotalHitCount() / totalRuns * 100) + "%");
-        System.out.println("Matched 2 Numbers Count: " + rtpDataToPrint.getTotalHits());
-        System.out.println("Total Spot Selected Count: " + rtpDataToPrint.getTotalSpotSelectedCount());
-        System.out.println("Spot 2 Hit Rate: " + ((double) rtpDataToPrint.getTotalHits() / rtpDataToPrint.getTotalSpotSelectedCount() * 100) + "%");
+        System.out.println("Matched 2 Numbers Count: " + rtpDataToPrint.getTotalSpot2Hits());
+        System.out.println("Total Spot Selected Count: " + rtpDataToPrint.getTotalSpot2SelectedCount());
+        System.out.println("Spot 2 Hit Rate: " + ((double) rtpDataToPrint.getTotalSpot2Hits() / rtpDataToPrint.getTotalSpot2SelectedCount() * 100) + "%");
         System.out.println("Max Win Amount: " + rtpDataToPrint.getMaxWinAmount());
 
         System.out.println("spot2RTPPercentage: " + spot2RTPPercentage + "%");
@@ -236,28 +288,94 @@ public class RTPTestSingle {
         private int finishedThreads = 0;
         private BigDecimal winAmount = BigDecimal.ZERO;
         private int hitCount = 0;
-        private double maxWinAmount = 0;
+        private BigDecimal maxWinAmount = BigDecimal.ZERO;
         private int matchedNumbersCount = 0;
         private int numberOfSpots = 0;
 
+        private int matched0NumberCount_spot2 = 0;
+        private int matched1NumberCount_spot2 = 0;
+
+        int matched0NumberCount_spot3 = 0;
+        int matched1NumberCount_spot3 = 0;
+        int matched2NumberCount_spot3 = 0;
+        int matched3NumbersCount_spot3 = 0;
         int spot3SelectedCount = 0;
         int matched3NumbersCount = 0;
 
         int spot4SelectedCount = 0;
         int matched4NumbersCount = 0;
+        int matched0NumberCount_spot4 = 0;
+        int matched1NumberCount_spot4 = 0;
+        int matched2NumberCount_spot4 = 0;
+        int matched3NumberCount_spot4 = 0;
+        int matched4NumberCount_spot4 = 0;
 
         int spot5SelectedCount = 0;
         int matched5NumbersCount = 0;
+         int matched_0_NumberCount_spot5 = 0;
+         int matched_1_NumberCount_spot5 = 0;
+         int matched_2_NumberCount_spot5 = 0;
+         int matched_3_NumberCount_spot5 = 0;
+         int matched_4_NumberCount_spot5 = 0;
+         int matched_5_NumberCount_spot5 = 0;
 
+         int matched_0_NumberCount_spot6 = 0;
+         int matched_1_NumberCount_spot6 = 0;
+         int matched_2_NumberCount_spot6 = 0;
+         int matched_3_NumberCount_spot6 = 0;
+         int matched_4_NumberCount_spot6 = 0;
+         int matched_5_NumberCount_spot6 = 0;
+         int matched_6_NumberCount_spot6 = 0;
         int spot6SelectedCount = 0;
         int matched6NumbersCount = 0;
+
+        int matched_0_NumberCount_spot7 = 0;
+        int matched_1_NumberCount_spot7 = 0;
+        int matched_2_NumberCount_spot7 = 0;
+        int matched_3_NumberCount_spot7 = 0;
+        int matched_4_NumberCount_spot7 = 0;
+        int matched_5_NumberCount_spot7 = 0;
+        int matched_6_NumberCount_spot7 = 0;
+        int matched_7_NumberCount_spot7 = 0;
         int spot7SelectedCount = 0;
         int matched7NumbersCount = 0;
 
+        int matched_0_NumberCount_spot8 = 0;
+        int matched_1_NumberCount_spot8 = 0;
+        int matched_2_NumberCount_spot8 = 0;
+        int matched_3_NumberCount_spot8 = 0;
+        int matched_4_NumberCount_spot8 = 0;
+        int matched_5_NumberCount_spot8 = 0;
+        int matched_6_NumberCount_spot8 = 0;
+        int matched_7_NumberCount_spot8 = 0;
+        int matched_8_NumberCount_spot8 = 0;
         int spot8SelectedCount = 0;
         int matched8NumbersCount = 0;
+
+        int matched_0_NumberCount_spot9 = 0;
+        int matched_1_NumberCount_spot9 = 0;
+        int matched_2_NumberCount_spot9 = 0;
+        int matched_3_NumberCount_spot9 = 0;
+        int matched_4_NumberCount_spot9 = 0;
+        int matched_5_NumberCount_spot9 = 0;
+        int matched_6_NumberCount_spot9 = 0;
+        int matched_7_NumberCount_spot9 = 0;
+        int matched_8_NumberCount_spot9 = 0;
+        int matched_9_NumberCount_spot9 = 0;
         int spot9SelectedCount = 0;
         int matched9NumbersCount = 0;
+
+        int matched_0_NumberCount_spot10 = 0;
+        int matched_1_NumberCount_spot10 = 0;
+        int matched_2_NumberCount_spot10 = 0;
+        int matched_3_NumberCount_spot10 = 0;
+        int matched_4_NumberCount_spot10 = 0;
+        int matched_5_NumberCount_spot10 = 0;
+        int matched_6_NumberCount_spot10 = 0;
+        int matched_7_NumberCount_spot10 = 0;
+        int matched_8_NumberCount_spot10 = 0;
+        int matched_9_NumberCount_spot10 = 0;
+        int matched_10_NumberCount_spot10 = 0;
         int spot10SelectedCount = 0;
         int matched10NumbersCount = 0;
 
@@ -278,27 +396,99 @@ public class RTPTestSingle {
         synchronized void add(RtpResult result) {
             winAmount = winAmount.add(result.getWinAmount());
             hitCount = hitCount + result.getHitCount();
-            if(result.getMaxWinAmount() > maxWinAmount){
+            if(result.getMaxWinAmount().compareTo(maxWinAmount) > 0){
                 maxWinAmount = result.getMaxWinAmount();
             }
             finishedThreads++;
+            matched0NumberCount_spot2 = matched0NumberCount_spot2 + result.getMatched0NumberCount_spot2();
+            matched1NumberCount_spot2 = matched1NumberCount_spot2 + result.getMatched1NumberCount_spot2();
             matchedNumbersCount = matchedNumbersCount + result.getMatchedNumbersCount();
             numberOfSpots = numberOfSpots + result.getNumberOfSpots();
+
             spot3SelectedCount = spot3SelectedCount + result.getSpot3SelectedCount();
             matched3NumbersCount = matched3NumbersCount + result.getMatched3NumbersCount();
+            matched0NumberCount_spot3 = matched0NumberCount_spot3 + result.getMatched_0_NumberCount_spot3();
+            matched1NumberCount_spot3 = matched1NumberCount_spot3 + result.getMatched_1_NumberCount_spot3();
+            matched2NumberCount_spot3 = matched2NumberCount_spot3 + result.getMatched_2_NumberCount_spot3();
+            matched3NumbersCount_spot3 = matched3NumbersCount_spot3 + result.getMatched_3_NumberCount_spot3();
+
             spot4SelectedCount = spot4SelectedCount + result.getSpot4SelectedCount();
             matched4NumbersCount = matched4NumbersCount + result.getMatched4NumbersCount();
+            matched0NumberCount_spot4 = matched0NumberCount_spot4 + result.getMatched_0_NumberCount_spot4();
+            matched1NumberCount_spot4 = matched1NumberCount_spot4 + result.getMatched_1_NumberCount_spot4();
+            matched2NumberCount_spot4 = matched2NumberCount_spot4 + result.getMatched_2_NumberCount_spot4();
+            matched3NumberCount_spot4 = matched3NumberCount_spot4 + result.getMatched_3_NumberCount_spot4();
+            matched4NumberCount_spot4 = matched4NumberCount_spot4 + result.getMatched_4_NumberCount_spot4();
+
             spot5SelectedCount = spot5SelectedCount + result.getSpot5SelectedCount();
             matched5NumbersCount = matched5NumbersCount + result.getMatched5NumbersCount();
+            matched_0_NumberCount_spot5 = matched_0_NumberCount_spot5 + result.getMatched_0_NumberCount_spot5();
+            matched_1_NumberCount_spot5 = matched_1_NumberCount_spot5 + result.getMatched_1_NumberCount_spot5();
+            matched_2_NumberCount_spot5 = matched_2_NumberCount_spot5 + result.getMatched_2_NumberCount_spot5();
+            matched_3_NumberCount_spot5 = matched_3_NumberCount_spot5 + result.getMatched_3_NumberCount_spot5();
+            matched_4_NumberCount_spot5 = matched_4_NumberCount_spot5 + result.getMatched_4_NumberCount_spot5();
+            matched_5_NumberCount_spot5 = matched_5_NumberCount_spot5 + result.getMatched_5_NumberCount_spot5();
 
+
+
+            matched_0_NumberCount_spot6 = matched_0_NumberCount_spot6 + result.getMatched_0_NumberCount_spot6();
+            matched_1_NumberCount_spot6 = matched_1_NumberCount_spot6 + result.getMatched_1_NumberCount_spot6();
+            matched_2_NumberCount_spot6 = matched_2_NumberCount_spot6 + result.getMatched_2_NumberCount_spot6();
+            matched_3_NumberCount_spot6 = matched_3_NumberCount_spot6 + result.getMatched_3_NumberCount_spot6();
+            matched_4_NumberCount_spot6 = matched_4_NumberCount_spot6 + result.getMatched_4_NumberCount_spot6();
+            matched_5_NumberCount_spot6 = matched_5_NumberCount_spot6 + result.getMatched_5_NumberCount_spot6();
+            matched_6_NumberCount_spot6 = matched_6_NumberCount_spot6 + result.getMatched_6_NumberCount_spot6();
             spot6SelectedCount = spot6SelectedCount + result.getSpot6SelectedCount();
             matched6NumbersCount = matched6NumbersCount + result.getMatched6NumbersCount();
+
+            matched_0_NumberCount_spot7 = matched_0_NumberCount_spot7 + result.getMatched_0_NumberCount_spot7();
+            matched_1_NumberCount_spot7 = matched_1_NumberCount_spot7 + result.getMatched_1_NumberCount_spot7();
+            matched_2_NumberCount_spot7 = matched_2_NumberCount_spot7 + result.getMatched_2_NumberCount_spot7();
+            matched_3_NumberCount_spot7 = matched_3_NumberCount_spot7 + result.getMatched_3_NumberCount_spot7();
+            matched_4_NumberCount_spot7 = matched_4_NumberCount_spot7 + result.getMatched_4_NumberCount_spot7();
+            matched_5_NumberCount_spot7 = matched_5_NumberCount_spot7 + result.getMatched_5_NumberCount_spot7();
+            matched_6_NumberCount_spot7 = matched_6_NumberCount_spot7 + result.getMatched_6_NumberCount_spot7();
+            matched_7_NumberCount_spot7 = matched_7_NumberCount_spot7 + result.getMatched_7_NumberCount_spot7();
             spot7SelectedCount = spot7SelectedCount + result.getSpot7SelectedCount();
             matched7NumbersCount = matched7NumbersCount + result.getMatched7SelectedCount();
+
+            matched_0_NumberCount_spot8 = matched_0_NumberCount_spot8 + result.getMatched_0_NumberCount_spot8();
+            matched_1_NumberCount_spot8 = matched_1_NumberCount_spot8 + result.getMatched_1_NumberCount_spot8();
+            matched_2_NumberCount_spot8 = matched_2_NumberCount_spot8 + result.getMatched_2_NumberCount_spot8();
+            matched_3_NumberCount_spot8 = matched_3_NumberCount_spot8 + result.getMatched_3_NumberCount_spot8();
+            matched_4_NumberCount_spot8 = matched_4_NumberCount_spot8 + result.getMatched_4_NumberCount_spot8();
+            matched_5_NumberCount_spot8 = matched_5_NumberCount_spot8 + result.getMatched_5_NumberCount_spot8();
+            matched_6_NumberCount_spot8 = matched_6_NumberCount_spot8 + result.getMatched_6_NumberCount_spot8();
+            matched_7_NumberCount_spot8 = matched_7_NumberCount_spot8 + result.getMatched_7_NumberCount_spot8();
+            matched_8_NumberCount_spot8 = matched_8_NumberCount_spot8 + result.getMatched_8_NumberCount_spot8();
             spot8SelectedCount = spot8SelectedCount + result.getSpot8SelectedCount();
             matched8NumbersCount = matched8NumbersCount + result.getMatched8SelectedCount();
+
+            matched_0_NumberCount_spot9 = matched_0_NumberCount_spot9 + result.getMatched_0_NumberCount_spot9();
+            matched_1_NumberCount_spot9 = matched_1_NumberCount_spot9 + result.getMatched_1_NumberCount_spot9();
+            matched_2_NumberCount_spot9 = matched_2_NumberCount_spot9 + result.getMatched_2_NumberCount_spot9();
+            matched_3_NumberCount_spot9 = matched_3_NumberCount_spot9 + result.getMatched_3_NumberCount_spot9();
+            matched_4_NumberCount_spot9 = matched_4_NumberCount_spot9 + result.getMatched_4_NumberCount_spot9();
+            matched_5_NumberCount_spot9 = matched_5_NumberCount_spot9 + result.getMatched_5_NumberCount_spot9();
+            matched_6_NumberCount_spot9 = matched_6_NumberCount_spot9 + result.getMatched_6_NumberCount_spot9();
+            matched_7_NumberCount_spot9 = matched_7_NumberCount_spot9 + result.getMatched_7_NumberCount_spot9();
+            matched_8_NumberCount_spot9 = matched_8_NumberCount_spot9 + result.getMatched_8_NumberCount_spot9();
+            matched_9_NumberCount_spot9 = matched_9_NumberCount_spot9 + result.getMatched_9_NumberCount_spot9();
             spot9SelectedCount = spot9SelectedCount + result.getSpot9SelectedCount();
             matched9NumbersCount = matched9NumbersCount + result.getMatched9SelectedCount();
+
+
+            matched_0_NumberCount_spot10 = matched_0_NumberCount_spot10 + result.getMatched_0_NumberCount_spot10();
+            matched_1_NumberCount_spot10 = matched_1_NumberCount_spot10 + result.getMatched_1_NumberCount_spot10();
+            matched_2_NumberCount_spot10 = matched_2_NumberCount_spot10 + result.getMatched_2_NumberCount_spot10();
+            matched_3_NumberCount_spot10 = matched_3_NumberCount_spot10 + result.getMatched_3_NumberCount_spot10();
+            matched_4_NumberCount_spot10 = matched_4_NumberCount_spot10 + result.getMatched_4_NumberCount_spot10();
+            matched_5_NumberCount_spot10 = matched_5_NumberCount_spot10 + result.getMatched_5_NumberCount_spot10();
+            matched_6_NumberCount_spot10 = matched_6_NumberCount_spot10 + result.getMatched_6_NumberCount_spot10();
+            matched_7_NumberCount_spot10 = matched_7_NumberCount_spot10 + result.getMatched_7_NumberCount_spot10();
+            matched_8_NumberCount_spot10 = matched_8_NumberCount_spot10 + result.getMatched_8_NumberCount_spot10();
+            matched_9_NumberCount_spot10 = matched_9_NumberCount_spot10 + result.getMatched_9_NumberCount_spot10();
+            matched_10_NumberCount_spot10 = matched_10_NumberCount_spot10 + result.getMatched_10_NumberCount_spot10();
             spot10SelectedCount = spot10SelectedCount + result.getSpot10SelectedCount();
             matched10NumbersCount = matched10NumbersCount + result.getMatched10SelectedCount();
 
@@ -322,7 +512,7 @@ public class RTPTestSingle {
         synchronized int getHitCount() {
             return hitCount;
         }
-        synchronized double getMaxWinAmount() {
+        synchronized BigDecimal getMaxWinAmount() {
             return maxWinAmount;
         }
         synchronized int getMatchedNumbersCount() {
@@ -331,11 +521,30 @@ public class RTPTestSingle {
         synchronized int getNumberOfSpots() {
             return numberOfSpots;
         }
+
+        synchronized int getMatched0NumberCount_spot2() {
+            return matched0NumberCount_spot2;
+        }
+        synchronized int getMatched1NumberCount_spot2() {
+            return matched1NumberCount_spot2;
+        }
         synchronized int getSpot3SelectedCount() {
             return spot3SelectedCount;
         }
         synchronized int getMatched3NumbersCount() {
             return matched3NumbersCount;
+        }
+        synchronized int getMatched0NumberCount_spot3() {
+            return matched0NumberCount_spot3;
+        }
+        synchronized int getMatched1NumberCount_spot3() {
+            return matched1NumberCount_spot3;
+        }
+        synchronized int getMatched2NumberCount_spot3() {
+            return matched2NumberCount_spot3;
+        }
+        synchronized int getMatched3NumberCount_spot3() {
+            return matched3NumbersCount_spot3;
         }
         synchronized int getSpot4SelectedCount() {
             return spot4SelectedCount;
@@ -343,18 +552,97 @@ public class RTPTestSingle {
         synchronized int getMatched4NumbersCount() {
             return matched4NumbersCount;
         }
+        synchronized int getMatched0NumberCount_spot4() {
+            return matched0NumberCount_spot4;
+        }
+        synchronized int getMatched1NumberCount_spot4() {
+            return matched1NumberCount_spot4;
+        }
+        synchronized int getMatched2NumberCount_spot4() {
+            return matched2NumberCount_spot4;
+        }
+        synchronized int getMatched3NumberCount_spot4() {
+            return matched3NumberCount_spot4;
+        }
+        synchronized int getMatched4NumberCount_spot4() {
+            return matched4NumberCount_spot4;
+        }
+
         synchronized int getSpot5SelectedCount() {
             return spot5SelectedCount;
         }
         synchronized int getMatched5NumbersCount() {
             return matched5NumbersCount;
         }
+        synchronized int getMatched0NumberCount_spot5() {
+            return matched_0_NumberCount_spot5;
+        }
+        synchronized int getMatched1NumberCount_spot5() {
+            return matched_1_NumberCount_spot5;
+        }
+        synchronized int getMatched2NumberCount_spot5() {
+            return matched_2_NumberCount_spot5;
+        }
+        synchronized int getMatched3NumberCount_spot5() {
+            return matched_3_NumberCount_spot5;
+        }
+        synchronized int getMatched4NumberCount_spot5() {
+            return matched_4_NumberCount_spot5;
+        }
+        synchronized int getMatched5NumberCount_spot5() {
+            return matched_5_NumberCount_spot5;
+        }
 
+        synchronized int getMatched0NumberCount_spot6() {
+            return matched_0_NumberCount_spot6;
+        }
+        synchronized int getMatched1NumberCount_spot6() {
+            return matched_1_NumberCount_spot6;
+        }
+        synchronized int getMatched2NumberCount_spot6() {
+            return matched_2_NumberCount_spot6;
+        }
+        synchronized int getMatched3NumberCount_spot6() {
+            return matched_3_NumberCount_spot6;
+        }
+        synchronized int getMatched4NumberCount_spot6() {
+            return matched_4_NumberCount_spot6;
+        }
+        synchronized int getMatched5NumberCount_spot6() {
+            return matched_5_NumberCount_spot6;
+        }
+        synchronized int getMatched6NumberCount_spot6() {
+            return matched_6_NumberCount_spot6;
+        }
         synchronized int getSpot6SelectedCount() {
             return spot6SelectedCount;
         }
         synchronized int getMatched6NumbersCount() {
             return matched6NumbersCount;
+        }
+        synchronized  int getMatched0NumberCount_spot7() {
+            return matched_0_NumberCount_spot7;
+        }
+        synchronized int getMatched1NumberCount_spot7() {
+            return matched_1_NumberCount_spot7;
+        }
+        synchronized int getMatched2NumberCount_spot7() {
+            return matched_2_NumberCount_spot7;
+        }
+        synchronized int getMatched3NumberCount_spot7() {
+            return matched_3_NumberCount_spot7;
+        }
+        synchronized int getMatched4NumberCount_spot7() {
+            return matched_4_NumberCount_spot7;
+        }
+        synchronized int getMatched5NumberCount_spot7() {
+            return matched_5_NumberCount_spot7;
+        }
+        synchronized int getMatched6NumberCount_spot7() {
+            return matched_6_NumberCount_spot7;
+        }
+        synchronized int getMatched7NumberCount_spot7() {
+            return matched_7_NumberCount_spot7;
         }
         synchronized int getSpot7SelectedCount() {
             return spot7SelectedCount;
@@ -362,12 +650,42 @@ public class RTPTestSingle {
         synchronized int getMatched7NumbersCount() {
             return matched7NumbersCount;
         }
+        synchronized int getMatched0NumberCount_spot8() {
+            return matched_0_NumberCount_spot8;
+        }
+        synchronized int getMatched1NumberCount_spot8() {
+            return matched_1_NumberCount_spot8;
+        }
+        synchronized int getMatched2NumberCount_spot8() {
+            return matched_2_NumberCount_spot8;
+        }
+        synchronized int getMatched3NumberCount_spot8() {
+            return matched_3_NumberCount_spot8;
+        }
+        synchronized int getMatched4NumberCount_spot8() {
+            return matched_4_NumberCount_spot8;
+        }
+        synchronized int getMatched5NumberCount_spot8() {
+            return matched_5_NumberCount_spot8;
+        }
+        synchronized int getMatched6NumberCount_spot8() {
+            return matched_6_NumberCount_spot8;
+        }
+        synchronized int getMatched7NumberCount_spot8() {
+            return matched_7_NumberCount_spot8;
+        }
+        synchronized int getMatched8NumberCount_spot8() {
+            return matched_8_NumberCount_spot8;
+        }
         synchronized int getSpot8SelectedCount() {
             return spot8SelectedCount;
         }
         synchronized int getMatched8NumbersCount() {
             return matched8NumbersCount;
         }
+
+
+
         synchronized int getSpot9SelectedCount() {
             return spot9SelectedCount;
         }
@@ -380,6 +698,7 @@ public class RTPTestSingle {
         synchronized int getMatched10NumbersCount() {
             return matched10NumbersCount;
         }
+
 
 
     }

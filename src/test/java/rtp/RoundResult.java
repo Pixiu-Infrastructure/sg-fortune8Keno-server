@@ -3,12 +3,14 @@ package rtp;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
+
 @Data
 @Accessors(chain = true)
 public class RoundResult {
 
 
-    private double winAmount;
+    private BigDecimal winAmount;
     private boolean multiplierTriggered;
     private int lastServerNum;
     private int multiplier;
