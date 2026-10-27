@@ -23,7 +23,7 @@ public class RTPTestSingle {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 10_0000_00L;
+    private final long totalRuns = 500_000_000L;
 
 
 
@@ -167,10 +167,33 @@ public class RTPTestSingle {
         rtpDataToPrint.setMatched_7_NumberCount_spot8(rtpDataToPrint.getMatched_7_NumberCount_spot8() + accumulator.getMatched7NumberCount_spot8());
         rtpDataToPrint.setMatched_8_NumberCount_spot8(rtpDataToPrint.getMatched_8_NumberCount_spot8() + accumulator.getMatched8NumberCount_spot8());
 
+
         rtpDataToPrint.setMatched9NumbersCount(rtpDataToPrint.getMatched9NumbersCount() + accumulator.getMatched9NumbersCount());
         rtpDataToPrint.setSpot9SelectedCount(rtpDataToPrint.getSpot9SelectedCount() + accumulator.getSpot9SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot9(rtpDataToPrint.getMatched_0_NumberCount_spot9() + accumulator.getMatched0NumberCount_spot9());
+        rtpDataToPrint.setMatched_1_NumberCount_spot9(rtpDataToPrint.getMatched_1_NumberCount_spot9() + accumulator.getMatched1NumberCount_spot9());
+        rtpDataToPrint.setMatched_2_NumberCount_spot9(rtpDataToPrint.getMatched_2_NumberCount_spot9() + accumulator.getMatched2NumberCount_spot9());
+        rtpDataToPrint.setMatched_3_NumberCount_spot9(rtpDataToPrint.getMatched_3_NumberCount_spot9() + accumulator.getMatched3NumberCount_spot9());
+        rtpDataToPrint.setMatched_4_NumberCount_spot9(rtpDataToPrint.getMatched_4_NumberCount_spot9() + accumulator.getMatched4NumberCount_spot9());
+        rtpDataToPrint.setMatched_5_NumberCount_spot9(rtpDataToPrint.getMatched_5_NumberCount_spot9() + accumulator.getMatched5NumberCount_spot9());
+        rtpDataToPrint.setMatched_6_NumberCount_spot9(rtpDataToPrint.getMatched_6_NumberCount_spot9() + accumulator.getMatched6NumberCount_spot9());
+        rtpDataToPrint.setMatched_7_NumberCount_spot9(rtpDataToPrint.getMatched_7_NumberCount_spot9() + accumulator.getMatched7NumberCount_spot9());
+        rtpDataToPrint.setMatched_8_NumberCount_spot9(rtpDataToPrint.getMatched_8_NumberCount_spot9() + accumulator.getMatched8NumberCount_spot9());
+        rtpDataToPrint.setMatched_9_NumberCount_spot9(rtpDataToPrint.getMatched_9_NumberCount_spot9() + accumulator.getMatched9NumberCount_spot9());
+
         rtpDataToPrint.setMatched10NumbersCount(rtpDataToPrint.getMatched10NumbersCount() + accumulator.getMatched10NumbersCount());
         rtpDataToPrint.setSpot10SelectedCount(rtpDataToPrint.getSpot10SelectedCount() + accumulator.getSpot10SelectedCount());
+        rtpDataToPrint.setMatched_0_NumberCount_spot10(rtpDataToPrint.getMatched_0_NumberCount_spot10() + accumulator.getMatched0NumberCount_spot10());
+        rtpDataToPrint.setMatched_1_NumberCount_spot10(rtpDataToPrint.getMatched_1_NumberCount_spot10() + accumulator.getMatched1NumberCount_spot10());
+        rtpDataToPrint.setMatched_2_NumberCount_spot10(rtpDataToPrint.getMatched_2_NumberCount_spot10() + accumulator.getMatched2NumberCount_spot10());
+        rtpDataToPrint.setMatched_3_NumberCount_spot10(rtpDataToPrint.getMatched_3_NumberCount_spot10() + accumulator.getMatched3NumberCount_spot10());
+        rtpDataToPrint.setMatched_4_NumberCount_spot10(rtpDataToPrint.getMatched_4_NumberCount_spot10() + accumulator.getMatched4NumberCount_spot10());
+        rtpDataToPrint.setMatched_5_NumberCount_spot10(rtpDataToPrint.getMatched_5_NumberCount_spot10() + accumulator.getMatched5NumberCount_spot10());
+        rtpDataToPrint.setMatched_6_NumberCount_spot10(rtpDataToPrint.getMatched_6_NumberCount_spot10() + accumulator.getMatched6NumberCount_spot10());
+        rtpDataToPrint.setMatched_7_NumberCount_spot10(rtpDataToPrint.getMatched_7_NumberCount_spot10() + accumulator.getMatched7NumberCount_spot10());
+        rtpDataToPrint.setMatched_8_NumberCount_spot10(rtpDataToPrint.getMatched_8_NumberCount_spot10() + accumulator.getMatched8NumberCount_spot10());
+        rtpDataToPrint.setMatched_9_NumberCount_spot10(rtpDataToPrint.getMatched_9_NumberCount_spot10() + accumulator.getMatched9NumberCount_spot10());
+        rtpDataToPrint.setMatched_10_NumberCount_spot10(rtpDataToPrint.getMatched_10_NumberCount_spot10() + accumulator.getMatched10NumberCount_spot10());
 
         rtpDataToPrint.setTotalWinSpot2(rtpDataToPrint.getTotalWinSpot2().add(accumulator.totalWinSpot2));
         rtpDataToPrint.setTotalWinSpot3(rtpDataToPrint.getTotalWinSpot3().add(accumulator.totalWinSpot3));
@@ -268,9 +291,10 @@ public class RTPTestSingle {
         long endTime = System.currentTimeMillis();
         long seconds = (endTime - startingTime) / 1000;
         System.out.println("Time taken: " + seconds + " seconds");
+        int fileName = rtp.multiply(BigDecimal.valueOf(100)).intValue();
 
         try {
-            RtpExcelWriter.write("RTP_Result_500M.xlsx", totalRuns, totalStake,
+            RtpExcelWriter.write("RTP_Result_500M_"+fileName+".xlsx", totalRuns, totalStake,
                    rtpDataToPrint);
             System.out.println("Excel written: RTP_Result_500M.xlsx");
         } catch (IOException e) {
@@ -684,13 +708,74 @@ public class RTPTestSingle {
             return matched8NumbersCount;
         }
 
-
-
+        synchronized int getMatched0NumberCount_spot9() {
+            return matched_0_NumberCount_spot9;
+        }
+        synchronized int getMatched1NumberCount_spot9() {
+            return matched_1_NumberCount_spot9;
+        }
+        synchronized int getMatched2NumberCount_spot9() {
+            return matched_2_NumberCount_spot9;
+        }
+        synchronized int getMatched3NumberCount_spot9() {
+            return matched_3_NumberCount_spot9;
+        }
+        synchronized int getMatched4NumberCount_spot9() {
+            return matched_4_NumberCount_spot9;
+        }
+        synchronized int getMatched5NumberCount_spot9() {
+            return matched_5_NumberCount_spot9;
+        }
+        synchronized int getMatched6NumberCount_spot9() {
+            return matched_6_NumberCount_spot9;
+        }
+        synchronized int getMatched7NumberCount_spot9() {
+            return matched_7_NumberCount_spot9;
+        }
+        synchronized int getMatched8NumberCount_spot9() {
+            return matched_8_NumberCount_spot9;
+        }
+        synchronized int getMatched9NumberCount_spot9() {
+            return matched_9_NumberCount_spot9;
+        }
         synchronized int getSpot9SelectedCount() {
             return spot9SelectedCount;
         }
         synchronized int getMatched9NumbersCount() {
             return matched9NumbersCount;
+        }
+        synchronized int getMatched0NumberCount_spot10() {
+            return matched_0_NumberCount_spot10;
+        }
+        synchronized int getMatched1NumberCount_spot10() {
+            return matched_1_NumberCount_spot10;
+        }
+        synchronized int getMatched2NumberCount_spot10() {
+            return matched_2_NumberCount_spot10;
+        }
+        synchronized int getMatched3NumberCount_spot10() {
+            return matched_3_NumberCount_spot10;
+        }
+        synchronized int getMatched4NumberCount_spot10() {
+            return matched_4_NumberCount_spot10;
+        }
+        synchronized int getMatched5NumberCount_spot10() {
+            return matched_5_NumberCount_spot10;
+        }
+        synchronized int getMatched6NumberCount_spot10() {
+            return matched_6_NumberCount_spot10;
+        }
+        synchronized int getMatched7NumberCount_spot10() {
+            return matched_7_NumberCount_spot10;
+        }
+        synchronized int getMatched8NumberCount_spot10() {
+            return matched_8_NumberCount_spot10;
+        }
+        synchronized int getMatched9NumberCount_spot10() {
+            return matched_9_NumberCount_spot10;
+        }
+        synchronized int getMatched10NumberCount_spot10() {
+            return matched_10_NumberCount_spot10;
         }
         synchronized int getSpot10SelectedCount() {
             return spot10SelectedCount;

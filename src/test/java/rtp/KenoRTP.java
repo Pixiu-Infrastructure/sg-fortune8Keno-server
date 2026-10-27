@@ -110,8 +110,8 @@ public class KenoRTP {
         totalWin = totalWin.add(result);
 
         if (finishedThreadCount == numberOfAvailableThreads) {
-            int totalStake = stakeValue.intValue() * rounds;
-            System.out.println("All threads finished. Total RTP result: " + (totalWin.divide(BigDecimal.valueOf(totalStake), 4, RoundingMode.HALF_UP).doubleValue() * 100) + "%");
+            BigDecimal totalStake = stakeValue.multiply(BigDecimal.valueOf(rounds));
+            System.out.println("All threads finished. Total RTP result: " + (totalWin.divide(totalStake, 4, RoundingMode.HALF_UP).doubleValue() * 100) + "%");
 
             long endTime = System.currentTimeMillis();
             System.out.println("Time taken: " + (endTime - startingTime) / 1000.0 + " seconds");
