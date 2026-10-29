@@ -298,6 +298,54 @@ public class RtpExcelWriter {
                 : rtpDataToPrint.getTotalWinSpot10().multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(rtpDataToPrint.getSpot10SelectedCount()),  new MathContext(4, RoundingMode.HALF_EVEN));
 
+        // --- Variance and Standard Deviation per spot ---
+        double[] spotVariance = new double[11]; // index 2..10
+        double[] spotSD       = new double[11];
+        long[]   spotCount    = {
+            0, 0,
+            rtpDataToPrint.getTotalSpot2SelectedCount(),
+            rtpDataToPrint.getSpot3SelectedCount(),
+            rtpDataToPrint.getSpot4SelectedCount(),
+            rtpDataToPrint.getSpot5SelectedCount(),
+            rtpDataToPrint.getSpot6SelectedCount(),
+            rtpDataToPrint.getSpot7SelectedCount(),
+            rtpDataToPrint.getSpot8SelectedCount(),
+            rtpDataToPrint.getSpot9SelectedCount(),
+            rtpDataToPrint.getSpot10SelectedCount()
+        };
+        BigDecimal[] spotTotalWin = {
+            BigDecimal.ZERO, BigDecimal.ZERO,
+            rtpDataToPrint.getTotalWinSpot2(),
+            rtpDataToPrint.getTotalWinSpot3(),
+            rtpDataToPrint.getTotalWinSpot4(),
+            rtpDataToPrint.getTotalWinSpot5(),
+            rtpDataToPrint.getTotalWinSpot6(),
+            rtpDataToPrint.getTotalWinSpot7(),
+            rtpDataToPrint.getTotalWinSpot8(),
+            rtpDataToPrint.getTotalWinSpot9(),
+            rtpDataToPrint.getTotalWinSpot10()
+        };
+        BigDecimal[] spotSumSq = {
+            BigDecimal.ZERO, BigDecimal.ZERO,
+            rtpDataToPrint.getSumOfSquaresSpot2(),
+            rtpDataToPrint.getSumOfSquaresSpot3(),
+            rtpDataToPrint.getSumOfSquaresSpot4(),
+            rtpDataToPrint.getSumOfSquaresSpot5(),
+            rtpDataToPrint.getSumOfSquaresSpot6(),
+            rtpDataToPrint.getSumOfSquaresSpot7(),
+            rtpDataToPrint.getSumOfSquaresSpot8(),
+            rtpDataToPrint.getSumOfSquaresSpot9(),
+            rtpDataToPrint.getSumOfSquaresSpot10()
+        };
+        for (int s = 2; s <= 10; s++) {
+            if (spotCount[s] > 0) {
+                double mean = spotTotalWin[s].doubleValue() / spotCount[s];
+                double e2   = spotSumSq[s].doubleValue()   / spotCount[s];
+                spotVariance[s] = e2 - mean * mean;
+                spotSD[s]       = Math.sqrt(Math.max(0, spotVariance[s]));
+            }
+        }
+
         try (Workbook workbook = new XSSFWorkbook()) {
             Sheet sheet = workbook.createSheet("RTP Result");
 
@@ -329,16 +377,18 @@ public class RtpExcelWriter {
             createCell(header2, 0, "Spots", headerStyle);
             createCell(header2, 1, "Hit Rate (%)", headerStyle);
             createCell(header2, 2, "RTP (%)", headerStyle);
+            createCell(header2, 3, "Variance", headerStyle);
+            createCell(header2, 4, "Std Dev", headerStyle);
             //data rows for second header
-            addRow(sheet, r++, " Spot 2 ", spot2HitRate, spot2RTPPercentage);
-            addRow(sheet, r++, " Spot 3 ", spot3HitRate, spot3RTPPercentage);
-            addRow(sheet, r++, " Spot 4 ", spot4HitRate, spot4RTPPercentage);
-            addRow(sheet, r++, " Spot 5 ", spot5HitRate, spot5RTPPercentage);
-            addRow(sheet, r++, " Spot 6 ", spot6HitRate, spot6RTPPercentage);
-            addRow(sheet, r++, " Spot 7 ", spot7HitRate, spot7RTPPercentage);
-            addRow(sheet, r++, " Spot 8 ", spot8HitRate, spot8RTPPercentage);
-            addRow(sheet, r++, " Spot 9 ", spot9HitRate, spot9RTPPercentage);
-            addRow(sheet, r++, " Spot 10 ", spot10HitRate, spot10RTPPercentage);
+            addSpotRow(sheet, r++, " Spot 2 ",  spot2HitRate,  spot2RTPPercentage,  spotVariance[2],  spotSD[2]);
+            addSpotRow(sheet, r++, " Spot 3 ",  spot3HitRate,  spot3RTPPercentage,  spotVariance[3],  spotSD[3]);
+            addSpotRow(sheet, r++, " Spot 4 ",  spot4HitRate,  spot4RTPPercentage,  spotVariance[4],  spotSD[4]);
+            addSpotRow(sheet, r++, " Spot 5 ",  spot5HitRate,  spot5RTPPercentage,  spotVariance[5],  spotSD[5]);
+            addSpotRow(sheet, r++, " Spot 6 ",  spot6HitRate,  spot6RTPPercentage,  spotVariance[6],  spotSD[6]);
+            addSpotRow(sheet, r++, " Spot 7 ",  spot7HitRate,  spot7RTPPercentage,  spotVariance[7],  spotSD[7]);
+            addSpotRow(sheet, r++, " Spot 8 ",  spot8HitRate,  spot8RTPPercentage,  spotVariance[8],  spotSD[8]);
+            addSpotRow(sheet, r++, " Spot 9 ",  spot9HitRate,  spot9RTPPercentage,  spotVariance[9],  spotSD[9]);
+            addSpotRow(sheet, r++, " Spot 10 ", spot10HitRate, spot10RTPPercentage, spotVariance[10], spotSD[10]);
 
             sheet.createRow(r++);
 
@@ -498,6 +548,9 @@ public class RtpExcelWriter {
 
             sheet.autoSizeColumn(0);
             sheet.autoSizeColumn(1);
+            sheet.autoSizeColumn(2);
+            sheet.autoSizeColumn(3);
+            sheet.autoSizeColumn(4);
 
             try (FileOutputStream out = new FileOutputStream(filePath)) {
                 workbook.write(out);
@@ -510,6 +563,17 @@ public class RtpExcelWriter {
         row.createCell(0).setCellValue(label);
         row.createCell(1).setCellValue(value.doubleValue());
         row.createCell(2).setCellValue(rtp.doubleValue());
+    }
+
+    private static void addSpotRow(Sheet sheet, int rowIndex, String label,
+                                   BigDecimal hitRate, BigDecimal rtpPct,
+                                   double variance, double sd) {
+        Row row = sheet.createRow(rowIndex);
+        row.createCell(0).setCellValue(label);
+        row.createCell(1).setCellValue(hitRate.doubleValue());
+        row.createCell(2).setCellValue(rtpPct.doubleValue());
+        row.createCell(3).setCellValue(variance);
+        row.createCell(4).setCellValue(sd);
     }
 
     public static String getCurrentDateString(){

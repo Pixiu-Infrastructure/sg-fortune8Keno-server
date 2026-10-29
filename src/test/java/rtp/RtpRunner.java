@@ -154,6 +154,16 @@ public class RtpRunner implements Callable<RtpResult> {
         BigDecimal totalWinSpot9 = BigDecimal.ZERO;
         BigDecimal totalWinSpot10 = BigDecimal.ZERO;
 
+        BigDecimal sumOfSquaresSpot2 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot3 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot4 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot5 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot6 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot7 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot8 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot9 = BigDecimal.ZERO;
+        BigDecimal sumOfSquaresSpot10 = BigDecimal.ZERO;
+
         BigDecimal maxWin = BigDecimal.ZERO;
 
 
@@ -177,6 +187,18 @@ public class RtpRunner implements Callable<RtpResult> {
             }
             if(roundWinAmount.compareTo(maxWin) > 0 ){
                 maxWin = roundWinAmount;
+            }
+            BigDecimal roundWinSquared = roundWinAmount.multiply(roundWinAmount);
+            switch (playerSelectedCount) {
+                case 2:  sumOfSquaresSpot2  = sumOfSquaresSpot2.add(roundWinSquared);  break;
+                case 3:  sumOfSquaresSpot3  = sumOfSquaresSpot3.add(roundWinSquared);  break;
+                case 4:  sumOfSquaresSpot4  = sumOfSquaresSpot4.add(roundWinSquared);  break;
+                case 5:  sumOfSquaresSpot5  = sumOfSquaresSpot5.add(roundWinSquared);  break;
+                case 6:  sumOfSquaresSpot6  = sumOfSquaresSpot6.add(roundWinSquared);  break;
+                case 7:  sumOfSquaresSpot7  = sumOfSquaresSpot7.add(roundWinSquared);  break;
+                case 8:  sumOfSquaresSpot8  = sumOfSquaresSpot8.add(roundWinSquared);  break;
+                case 9:  sumOfSquaresSpot9  = sumOfSquaresSpot9.add(roundWinSquared);  break;
+                case 10: sumOfSquaresSpot10 = sumOfSquaresSpot10.add(roundWinSquared); break;
             }
             if(playerSelectedCount == 2 && roundHitCount == 2){
                matched2NumbersCount++;
@@ -540,6 +562,15 @@ public class RtpRunner implements Callable<RtpResult> {
                 .setMatched_8_NumberCount_spot10(matched_8_NumberCount_spot10)
                 .setMatched_9_NumberCount_spot10(matched_9_NumberCount_spot10)
                 .setMatched_10_NumberCount_spot10(matched_10_NumberCount_spot10)
+                .setSumOfSquaresSpot2(sumOfSquaresSpot2)
+                .setSumOfSquaresSpot3(sumOfSquaresSpot3)
+                .setSumOfSquaresSpot4(sumOfSquaresSpot4)
+                .setSumOfSquaresSpot5(sumOfSquaresSpot5)
+                .setSumOfSquaresSpot6(sumOfSquaresSpot6)
+                .setSumOfSquaresSpot7(sumOfSquaresSpot7)
+                .setSumOfSquaresSpot8(sumOfSquaresSpot8)
+                .setSumOfSquaresSpot9(sumOfSquaresSpot9)
+                .setSumOfSquaresSpot10(sumOfSquaresSpot10)
                 ;
 
     }

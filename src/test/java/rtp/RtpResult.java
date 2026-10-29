@@ -117,5 +117,16 @@ public class RtpResult {
     BigDecimal totalWinSpot9 = BigDecimal.ZERO;
     BigDecimal totalWinSpot10 = BigDecimal.ZERO;
 
+    // sum of (winAmount²) per spot — used to compute variance and standard deviation
+    BigDecimal sumOfSquaresSpot2 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot3 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot4 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot5 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot6 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot7 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot8 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot9 = BigDecimal.ZERO;
+    BigDecimal sumOfSquaresSpot10 = BigDecimal.ZERO;
+
 
 }
