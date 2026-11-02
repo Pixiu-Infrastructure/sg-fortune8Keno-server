@@ -22,6 +22,8 @@ public class RtpExcelWriter {
                              BigDecimal totalStake,
                               RTPDataToPrint rtpDataToPrint) throws IOException {
 
+        String engineName = "Fortune 8 Keno";
+
         // RTP % = totalWins / totalStake * 100, kept in BigDecimal to avoid int overflow / precision loss
         BigDecimal rtpPercent = totalStake.signum() == 0
                 ? BigDecimal.ZERO
@@ -361,13 +363,14 @@ public class RtpExcelWriter {
             createCell(header, 0, "Metric", headerStyle);
             createCell(header, 1, "Value", headerStyle);
             // Data rows
-            addRow(sheet, r++, "Total Rounds", BigDecimal.valueOf(totalRuns));
-            addRow(sheet, r++, "Total Stake", totalStake);
+            addRow(sheet, r++, "Engine Name", engineName);
+            addRow(sheet, r++, "Total number of plays", BigDecimal.valueOf(totalRuns));
+            addRow(sheet, r++, "Total amount staked", totalStake);
             addRow(sheet, r++, "Total Wins", rtpDataToPrint.getTotalWins());
-            addRow(sheet, r++, "RTP (%)", rtpPercent);
+            addRow(sheet, r++, "Game RTP (%)", rtpPercent);
             addRow(sheet, r++, "Date created: ", getCurrentDateString());
-            addRow(sheet, r++, "Hit rate", hitRate);
-            addRow(sheet, r++, "Max Win Amount", rtpDataToPrint.getMaxWinAmount());
+            addRow(sheet, r++, "Win Hit rate", hitRate);
+            addRow(sheet, r++, "Largest win", rtpDataToPrint.getMaxWinAmount());
 
             sheet.createRow(r++);
             sheet.createRow(r++);
@@ -378,7 +381,7 @@ public class RtpExcelWriter {
             createCell(header2, 1, "Hit Rate (%)", headerStyle);
             createCell(header2, 2, "RTP (%)", headerStyle);
             createCell(header2, 3, "Variance", headerStyle);
-            createCell(header2, 4, "Std Dev", headerStyle);
+            createCell(header2, 4, "Win standard deviation", headerStyle);
             //data rows for second header
             addSpotRow(sheet, r++, " Spot 2 ",  spot2HitRate,  spot2RTPPercentage,  spotVariance[2],  spotSD[2]);
             addSpotRow(sheet, r++, " Spot 3 ",  spot3HitRate,  spot3RTPPercentage,  spotVariance[3],  spotSD[3]);
