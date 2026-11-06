@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.SplittableRandom;
 import java.util.concurrent.Callable;
 
 
@@ -174,7 +175,7 @@ public class RtpRunner implements Callable<RtpResult> {
                     .setExpectedRTP(expectedRTP)
                     .setSaveResults(saveResults)
 //                    .setInitialCommand(initialCommand)
-                    .setRandom(random)
+                    .setRandom(null)
                     .call();
 
             totalWins = totalWins

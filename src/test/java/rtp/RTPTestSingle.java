@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.util.Random;
+import java.util.SplittableRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -19,11 +19,11 @@ public class RTPTestSingle {
     private static int forceNumOfThreads = 0; // set this greater than 0 will force to run range check in number of threads/times
     private int availableThreads;
 
-    private final BigDecimal rtp = RTP.VARIANT_89;
+    private final BigDecimal rtp = RTP.VARIANT_92;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 500_000_000L;
+    private final long totalRuns = 100_000_000_0L;
 
 
 
@@ -86,12 +86,12 @@ public class RTPTestSingle {
         ExecutorService executorService = Executors.newFixedThreadPool(threadsForBatch);
         BatchAccumulator accumulator = new BatchAccumulator(threadsForBatch);
 
+        // One master per batch; split() gives each thread a statistically
+        // independent sub-generator with no CAS overhead.
+        SplittableRandom master = new SplittableRandom();
         for (int i = 0; i < threadsForBatch; i++) {
             long runsForThisThread = eachRun + (i == threadsForBatch - 1 ? remainder : 0);
-            // IMPORTANT: a fresh Random per thread — never share one Random
-            // instance across threads, it causes heavy CAS contention and
-            // effectively serializes the threads under high call volume.
-            Random random = new Random();
+            SplittableRandom random = master.split();
             executorService.submit(() -> runTask(runsForThisThread, random, accumulator));
         }
 
@@ -219,10 +219,10 @@ public class RTPTestSingle {
                 + " (" + roundsThisBatch + " rounds) — running total wins: " + rtpDataToPrint.getTotalWins());
     }
 
-    private void runTask(long eachRun, Random random, BatchAccumulator accumulator) {
+    private void runTask(long eachRun, SplittableRandom random, BatchAccumulator accumulator) {
         RtpRunner rtpRunner = RtpRunner.builder()
                 .expectedRTP(this.rtp)
-                .random(random)
+                .random(null)
                 .totalRuns((int) eachRun)
                 .build();
         try {
@@ -316,9 +316,9 @@ public class RTPTestSingle {
         int fileName = rtp.multiply(BigDecimal.valueOf(100)).intValue();
 
         try {
-            RtpExcelWriter.write("RTP_Result_500M_"+fileName+".xlsx", totalRuns, totalStake,
+            RtpExcelWriter.write("RTP_Result_1B_"+fileName+".xlsx", totalRuns, totalStake,
                    rtpDataToPrint);
-            System.out.println("Excel written: RTP_Result_500M.xlsx");
+            System.out.println("Excel written: RTP_Result_1B.xlsx");
         } catch (IOException e) {
             System.out.println("Failed to write Excel: " + e.getMessage());
         }

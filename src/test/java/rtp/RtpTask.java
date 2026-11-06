@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.SplittableRandom;
 import java.util.concurrent.Callable;
 
 
@@ -70,7 +71,7 @@ public class RtpTask implements Callable<RoundResult> {
         // This method should return the player's chosen numbers.
         // player may select between 2 and 10 numbers from a pool of 80 numbers
 
-        int numberOfSpots = random.nextInt(2, 11);
+        int numberOfSpots = 2;
         if (numberOfSpots == 1 || numberOfSpots > 10) {
             throw new IllegalStateException("Number of spots must be between 2 and 10. Generated: " + numberOfSpots);
         }

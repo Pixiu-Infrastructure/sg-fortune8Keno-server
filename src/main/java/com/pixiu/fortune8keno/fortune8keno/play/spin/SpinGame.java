@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.random.RandomGenerator;
 
 
 @Component
@@ -169,7 +170,7 @@ public class SpinGame {
         return gameConfiguration.getGameMathConfigSeparate().getKenoPayouts().containsKey(picks);
     }
 
-    public TreeSet<Integer> getServerDrawnNumbers(Random random) {
+    public TreeSet<Integer> getServerDrawnNumbers(RandomGenerator random) {
         TreeSet<Integer> serverDrawnNumbers = new TreeSet<>(); // Clear previous drawn numbers before generating new ones
 
         while (serverDrawnNumbers.size() < 20) {

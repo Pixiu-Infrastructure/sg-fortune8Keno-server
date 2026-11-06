@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
+import java.util.random.RandomGenerator;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class PlayRequestCommandData {
     private Set<Integer> selectedNumbers;
     private String extraParameters;
     private String addOns;
-    private Random randomNumber;
+    private RandomGenerator randomNumber;
 
     public PlayRequestCommandData(String ACTION, BigDecimal stakeAmount, int nbTickets, BigDecimal betValue, Set<Integer> selectedNumbers, String extraParameters, String addOns) {
         this.action = ACTION;
