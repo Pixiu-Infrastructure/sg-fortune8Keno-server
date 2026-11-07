@@ -33,8 +33,6 @@ public class RtpSetUp {
         ;
 
 
-
-
         return new GamePlayService(gameConfigService, command);
     }
 }

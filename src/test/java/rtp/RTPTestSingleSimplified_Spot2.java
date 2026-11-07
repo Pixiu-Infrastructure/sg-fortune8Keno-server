@@ -9,13 +9,12 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.Random;
-import java.util.SplittableRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class RTPTestSingleSimplified {
+public class RTPTestSingleSimplified_Spot2 {
 
     private static int forceNumOfThreads = 0; // set this greater than 0 will force to run range check in number of threads/times
     private int availableThreads;
@@ -24,7 +23,7 @@ public class RTPTestSingleSimplified {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 100_000_000L;
+    private final long totalRuns = 100_000_00L;
 
 
 
@@ -104,13 +103,22 @@ public class RTPTestSingleSimplified {
         }
 
         rtpDataToPrint.setTotalWins(rtpDataToPrint.getTotalWins().add(accumulator.getWinAmount()));
+        rtpDataToPrint.setTotalHitCount(rtpDataToPrint.getTotalHitCount() + accumulator.getHitCount());
+        rtpDataToPrint.setMaxWinAmount(BigDecimal.valueOf(Math.max(accumulator.getMaxWinAmount().intValue(), rtpDataToPrint.getMaxWinAmount().intValue())));
+        rtpDataToPrint.setTotalSpot2Hits(rtpDataToPrint.getTotalSpot2Hits() + accumulator.getMatchedNumbersCount());
+        rtpDataToPrint.setTotalSpot2SelectedCount(rtpDataToPrint.getTotalSpot2SelectedCount() + accumulator.getNumberOfSpots());
+
+        rtpDataToPrint.setMatched0NumberCount_spot2(rtpDataToPrint.getMatched0NumberCount_spot2() + accumulator.getMatched0NumberCount_spot2());
+        rtpDataToPrint.setMatched1NumberCount_spot2(rtpDataToPrint.getMatched1NumberCount_spot2() + accumulator.getMatched1NumberCount_spot2());
+        rtpDataToPrint.setSumOfSquaresSpot2(rtpDataToPrint.getSumOfSquaresSpot2().add(accumulator.getSumOfSquaresSpot2()));
+        rtpDataToPrint.setTotalWinSpot2(rtpDataToPrint.getTotalWinSpot2().add(accumulator.totalWinSpot2));
 
         System.out.println("Completed batch " + batchNum + "/" + totalBatches
                 + " (" + roundsThisBatch + " rounds) — running total wins: " + rtpDataToPrint.getTotalWins());
     }
 
     private void runTask(long eachRun, Random random, BatchAccumulator accumulator) {
-        RtpRunnerSimple rtpRunner = RtpRunnerSimple.builder()
+        RtpRunnerSimple_Spot2 rtpRunner = RtpRunnerSimple_Spot2.builder()
                 .expectedRTP(this.rtp)
                 .random(random)
                 .totalRuns((int) eachRun)
@@ -144,7 +152,7 @@ public class RTPTestSingleSimplified {
         int fileName = rtp.multiply(BigDecimal.valueOf(100)).intValue();
 
         try {
-            RtpExcelWriterSimplified.write("RTP_Result_1B_"+fileName+".xlsx", totalRuns, totalStake,
+            RtpExcelWriterSimplified_Spot2.write("RTP_Result_1B_"+fileName+".xlsx", totalRuns, totalStake,
                    rtpDataToPrint);
             System.out.println("Excel written: RTP_Result_1B.xlsx");
         } catch (IOException e) {
@@ -162,6 +170,16 @@ public class RTPTestSingleSimplified {
         private final int expectedThreads;
         private int finishedThreads = 0;
         private BigDecimal winAmount = BigDecimal.ZERO;
+        private int hitCount = 0;
+        private BigDecimal maxWinAmount = BigDecimal.ZERO;
+        private int matchedNumbersCount = 0;
+        private int numberOfSpots = 0;
+
+        private int matched0NumberCount_spot2 = 0;
+        private int matched1NumberCount_spot2 = 0;
+        BigDecimal sumOfSquaresSpot2 = BigDecimal.ZERO;
+        BigDecimal totalWinSpot2 =  BigDecimal.ZERO;
+
 
 
         BatchAccumulator(int expectedThreads) {
@@ -169,14 +187,43 @@ public class RTPTestSingleSimplified {
         }
 
         synchronized void add(RtpResult result) {
+            hitCount = hitCount + result.getHitCount();
+            if(result.getMaxWinAmount().compareTo(maxWinAmount) > 0){
+                maxWinAmount = result.getMaxWinAmount();
+            }
             winAmount = winAmount.add(result.getWinAmount());
+            finishedThreads++;
+            matched0NumberCount_spot2 = matched0NumberCount_spot2 + result.getMatched0NumberCount_spot2();
+            matched1NumberCount_spot2 = matched1NumberCount_spot2 + result.getMatched1NumberCount_spot2();
+            matchedNumbersCount = matchedNumbersCount + result.getMatchedNumbersCount();
+            numberOfSpots = numberOfSpots + result.getNumberOfSpots();
+            sumOfSquaresSpot2  = sumOfSquaresSpot2.add(result.getSumOfSquaresSpot2());
+            totalWinSpot2 = totalWinSpot2.add(result.getTotalWinSpot2());
         }
 
         synchronized BigDecimal getWinAmount() {
             return winAmount;
         }
+        synchronized int getHitCount() {
+            return hitCount;
+        }
+        synchronized BigDecimal getMaxWinAmount() {
+            return maxWinAmount;
+        }
+        synchronized int getMatchedNumbersCount() {
+            return matchedNumbersCount;
+        }
+        synchronized int getNumberOfSpots() {
+            return numberOfSpots;
+        }
+        synchronized BigDecimal getSumOfSquaresSpot2()  { return sumOfSquaresSpot2; }
 
-
+        synchronized int getMatched0NumberCount_spot2() {
+            return matched0NumberCount_spot2;
+        }
+        synchronized int getMatched1NumberCount_spot2() {
+            return matched1NumberCount_spot2;
+        }
 
     }
 }
