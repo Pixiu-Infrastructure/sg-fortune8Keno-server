@@ -117,7 +117,7 @@ public class RtpExcelWriterSimplified_Spot4 {
             createCell(header2, 3, "Variance", headerStyle);
             createCell(header2, 4, "Win standard deviation", headerStyle);
 
-            addSpotRow(sheet, r++, " Spot 3 ",  spot4HitRate,  spot4RTPPercentage,  spotVariance,  spotSD);;
+            addSpotRow(sheet, r++, " Spot 4 ",  spot4HitRate,  spot4RTPPercentage,  spotVariance,  spotSD);;
 
             //data rows for second header
             sheet.createRow(r++);

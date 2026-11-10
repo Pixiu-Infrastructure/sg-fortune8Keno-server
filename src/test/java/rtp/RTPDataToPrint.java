@@ -120,4 +120,11 @@ public class RTPDataToPrint {
     BigDecimal sumOfSquaresSpot8 = BigDecimal.ZERO;
     BigDecimal sumOfSquaresSpot9 = BigDecimal.ZERO;
     BigDecimal sumOfSquaresSpot10 = BigDecimal.ZERO;
+
+    int multiplierTriggeredCount = 0;
+    int awardGreaterThanEqualTo10 = 0;
+    int awardGreaterThanEqualTo20 = 0;
+    int awardGreaterThanEqualTo50 = 0;
+    int awardGreaterThanEqualTo100 = 0;
+    int awardGreaterThanEqualTo1000 = 0;
 }

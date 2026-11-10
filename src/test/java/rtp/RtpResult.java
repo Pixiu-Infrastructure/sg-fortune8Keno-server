@@ -10,9 +10,7 @@ public class RtpResult {
 
     private int matchedNumbersCount;
     private BigDecimal winAmount;
-    private boolean multiplierTriggered;
     private int lastServerNum;
-    private int multiplier;
     private int numberOfSpots;
 
     private int matched0NumberCount_spot2 = 0;
@@ -127,6 +125,13 @@ public class RtpResult {
     BigDecimal sumOfSquaresSpot8 = BigDecimal.ZERO;
     BigDecimal sumOfSquaresSpot9 = BigDecimal.ZERO;
     BigDecimal sumOfSquaresSpot10 = BigDecimal.ZERO;
+
+    int multiplierTriggeredCount = 0;
+    int awardGreaterThanEqualTo10 = 0;
+    int awardGreaterThanEqualTo20 = 0;
+    int awardGreaterThanEqualTo50 = 0;
+    int awardGreaterThanEqualTo100 = 0;
+    int awardGreaterThanEqualTo1000 = 0;
 
 
 }
