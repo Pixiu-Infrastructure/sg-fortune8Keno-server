@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -23,7 +25,7 @@ public class RTPTestSingleSimplified_Spot6 {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 100_000L;
+    private final long totalRuns = 8766453L;
 
 
 
@@ -121,6 +123,8 @@ public class RTPTestSingleSimplified_Spot6 {
         rtpDataToPrint.setAwardGreaterThanEqualTo50(rtpDataToPrint.getAwardGreaterThanEqualTo50() + accumulator.getAwardGreaterThanEqualTo50());
         rtpDataToPrint.setAwardGreaterThanEqualTo100(rtpDataToPrint.getAwardGreaterThanEqualTo100() + accumulator.getAwardGreaterThanEqualTo100());
         rtpDataToPrint.setAwardGreaterThanEqualTo1000(rtpDataToPrint.getAwardGreaterThanEqualTo1000() + accumulator.getAwardGreaterThanEqualTo1000());
+        accumulator.getWinAmountFrequency().forEach((k, v) ->
+                rtpDataToPrint.getWinAmountFrequency().merge(k, v, Long::sum));
 
 
         System.out.println("Completed batch " + batchNum + "/" + totalBatches
@@ -204,6 +208,7 @@ public class RTPTestSingleSimplified_Spot6 {
         int awardGreaterThanEqualTo50 = 0;
         int awardGreaterThanEqualTo100 = 0;
         int awardGreaterThanEqualTo1000 = 0;
+        Map<Long, Long> winAmountFrequency = new HashMap<>();
 
 
 
@@ -236,6 +241,7 @@ public class RTPTestSingleSimplified_Spot6 {
             awardGreaterThanEqualTo50 = awardGreaterThanEqualTo50 + result.getAwardGreaterThanEqualTo50();
             awardGreaterThanEqualTo100 = awardGreaterThanEqualTo100 + result.getAwardGreaterThanEqualTo100();
             awardGreaterThanEqualTo1000 = awardGreaterThanEqualTo1000 + result.getAwardGreaterThanEqualTo1000();
+            result.getWinAmountFrequency().forEach((k, v) -> winAmountFrequency.merge(k, v, Long::sum));
         }
 
         synchronized BigDecimal getWinAmount() {
@@ -294,6 +300,9 @@ public class RTPTestSingleSimplified_Spot6 {
         }
         synchronized int getAwardGreaterThanEqualTo1000() {
             return awardGreaterThanEqualTo1000;
+        }
+        synchronized Map<Long, Long> getWinAmountFrequency() {
+            return winAmountFrequency;
         }
     }
 }

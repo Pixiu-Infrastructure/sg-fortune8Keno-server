@@ -10,6 +10,8 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Writes the final RTP summary to an Excel (.xlsx) file.
@@ -30,6 +32,9 @@ public class RtpExcelWriterSimplified_Spot6 {
                 : rtpDataToPrint.getTotalWins().multiply(BigDecimal.valueOf(100))
                 .divide(totalStake,  new MathContext(4, RoundingMode.HALF_EVEN));
         BigDecimal hitRate = BigDecimal.valueOf(rtpDataToPrint.getTotalHitCount())
+                .multiply(BigDecimal.valueOf(100))
+                .divide(BigDecimal.valueOf(totalRuns), new MathContext(4, RoundingMode.HALF_EVEN));
+        BigDecimal multiplierTriggerPct = BigDecimal.valueOf(rtpDataToPrint.getMultiplierTriggeredCount())
                 .multiply(BigDecimal.valueOf(100))
                 .divide(BigDecimal.valueOf(totalRuns), new MathContext(4, RoundingMode.HALF_EVEN));
 
@@ -106,13 +111,24 @@ public class RtpExcelWriterSimplified_Spot6 {
             createCell(header, 1, "Value", headerStyle);
             // Data rows
             addRow(sheet, r++, "Engine Name", engineName);
-            addRow(sheet, r++, "Total number of plays", BigDecimal.valueOf(totalRuns));
+            addRow(sheet, r++, "Total Games", totalRuns);
+            addRow(sheet, r++, "Total Hits", rtpDataToPrint.getTotalHitCount());
+            addRow(sheet, r++, "Overall Hit Freq (%)", hitRate);
             addRow(sheet, r++, "Total amount staked", totalStake);
             addRow(sheet, r++, "Total Wins", rtpDataToPrint.getTotalWins());
             addRow(sheet, r++, "Game RTP (%)", rtpPercent);
             addRow(sheet, r++, "Date created: ", getCurrentDateString());
-            addRow(sheet, r++, "Win Hit rate", hitRate);
+            addRow(sheet, r++, "Win Hit rate (%)", hitRate);
             addRow(sheet, r++, "Largest win", rtpDataToPrint.getMaxWinAmount());
+            sheet.createRow(r++);
+            addRow(sheet, r++, "Multiplier Triggers (count)", rtpDataToPrint.getMultiplierTriggeredCount());
+            addRow(sheet, r++, "Multiplier Triggers (%)", multiplierTriggerPct);
+            sheet.createRow(r++);
+            addRow(sheet, r++, "Award >= 10 (count)", rtpDataToPrint.getAwardGreaterThanEqualTo10());
+            addRow(sheet, r++, "Award >= 20 (count)", rtpDataToPrint.getAwardGreaterThanEqualTo20());
+            addRow(sheet, r++, "Award >= 50 (count)", rtpDataToPrint.getAwardGreaterThanEqualTo50());
+            addRow(sheet, r++, "Award >= 100 (count)", rtpDataToPrint.getAwardGreaterThanEqualTo100());
+            addRow(sheet, r++, "Award >= 1000 (count)", rtpDataToPrint.getAwardGreaterThanEqualTo1000());
             sheet.createRow(r++);
             sheet.createRow(r++);
             sheet.createRow(r++);
@@ -149,7 +165,15 @@ public class RtpExcelWriterSimplified_Spot6 {
             sheet.createRow(r++);
 
             Row header5 = sheet.createRow(r++);
-            addRow(sheet, r++, " Multiplier Triggers ", rtpDataToPrint.getMultiplierTriggeredCount());
+            createCell(header5, 0, "Hit Frequencies by Win Amount", headerStyle);
+            Row header6 = sheet.createRow(r++);
+            createCell(header6, 0, "Win Amount", headerStyle);
+            createCell(header6, 1, "Count", headerStyle);
+
+            Map<Long, Long> sortedFreq = new TreeMap<>(rtpDataToPrint.getWinAmountFrequency());
+            for (Map.Entry<Long, Long> entry : sortedFreq.entrySet()) {
+                addRow(sheet, r++, String.valueOf(entry.getKey()), entry.getValue());
+            }
 
             try (FileOutputStream out = new FileOutputStream(filePath)) {
                 workbook.write(out);
@@ -183,6 +207,11 @@ public class RtpExcelWriterSimplified_Spot6 {
         row.createCell(1).setCellValue(value.doubleValue());
     }
     private static void addRow(Sheet sheet, int rowIndex, String label, int value) {
+        Row row = sheet.createRow(rowIndex);
+        row.createCell(0).setCellValue(label);
+        row.createCell(1).setCellValue(value);
+    }
+    private static void addRow(Sheet sheet, int rowIndex, String label, long value) {
         Row row = sheet.createRow(rowIndex);
         row.createCell(0).setCellValue(label);
         row.createCell(1).setCellValue(value);

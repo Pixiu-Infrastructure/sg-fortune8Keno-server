@@ -10,7 +10,9 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.Callable;
 
@@ -76,6 +78,7 @@ public class RtpRunnerSimple_Spot6 implements Callable<RtpResult> {
         int awardGreaterThanEqualTo50 = 0;
         int awardGreaterThanEqualTo100 = 0;
         int awardGreaterThanEqualTo1000 = 0;
+        Map<Long, Long> winAmountFrequency = new HashMap<>();
 
 
         for (int i = 1; i <= totalRuns; i++) {
@@ -151,6 +154,7 @@ public class RtpRunnerSimple_Spot6 implements Callable<RtpResult> {
             if(playerSelectedCount == 6 && roundResult.isMultiplierTriggered()){
                 multiplierTriggeredCount++;
             }
+            winAmountFrequency.merge(roundWinAmount.longValue(), 1L, Long::sum);
 
         }
         return new RtpResult()
@@ -174,8 +178,7 @@ public class RtpRunnerSimple_Spot6 implements Callable<RtpResult> {
                 .setAwardGreaterThanEqualTo50(awardGreaterThanEqualTo50)
                 .setAwardGreaterThanEqualTo100(awardGreaterThanEqualTo100)
                 .setAwardGreaterThanEqualTo1000(awardGreaterThanEqualTo1000)
-
-
+                .setWinAmountFrequency(winAmountFrequency)
                 ;
 
     }

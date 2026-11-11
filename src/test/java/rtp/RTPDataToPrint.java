@@ -3,6 +3,8 @@ package rtp;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 @Data
 public class RTPDataToPrint {
@@ -127,4 +129,6 @@ public class RTPDataToPrint {
     int awardGreaterThanEqualTo50 = 0;
     int awardGreaterThanEqualTo100 = 0;
     int awardGreaterThanEqualTo1000 = 0;
+
+    Map<Long, Long> winAmountFrequency = new HashMap<>();
 }

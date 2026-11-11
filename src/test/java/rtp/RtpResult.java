@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 @Data
 @Accessors(chain = true)
 public class RtpResult {
@@ -133,5 +135,6 @@ public class RtpResult {
     int awardGreaterThanEqualTo100 = 0;
     int awardGreaterThanEqualTo1000 = 0;
 
+    Map<Long, Long> winAmountFrequency = new HashMap<>();
 
 }
