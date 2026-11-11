@@ -71,7 +71,7 @@ public class RtpTask implements Callable<RoundResult> {
         // This method should return the player's chosen numbers.
         // player may select between 2 and 10 numbers from a pool of 80 numbers
 
-        int numberOfSpots = 7;
+        int numberOfSpots = 8;
         if (numberOfSpots == 1 || numberOfSpots > 10) {
             throw new IllegalStateException("Number of spots must be between 2 and 10. Generated: " + numberOfSpots);
         }
