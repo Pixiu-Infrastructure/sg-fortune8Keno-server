@@ -91,9 +91,8 @@ public class RTPTestSingleSimplified_Spot2 {
         Random master = new Random();
         for (int i = 0; i < threadsForBatch; i++) {
             long runsForThisThread = eachRun + (i == threadsForBatch - 1 ? remainder : 0);
-           // SplittableRandom random = master.split();
-
-            executorService.submit(() -> runTask(runsForThisThread, master, accumulator));
+            Random threadRandom = new Random(master.nextLong());
+            executorService.submit(() -> runTask(runsForThisThread, threadRandom, accumulator));
         }
 
         executorService.shutdown();

@@ -24,7 +24,7 @@ public class RTPTestSingleSimplified_Spot10 {
     private final BigDecimal rtp = RTP.VARIANT_92;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
-    private final long totalRuns = 500_0000_0L;
+    private final long totalRuns = 100_0000_000L;
 
     private final long batchSize = 5_000_000L;
 
@@ -71,8 +71,8 @@ public class RTPTestSingleSimplified_Spot10 {
         Random master = new Random();
         for (int i = 0; i < threadsForBatch; i++) {
             long runsForThisThread = eachRun + (i == threadsForBatch - 1 ? remainder : 0);
-            // SplittableRandom random = master.split();
-            executorService.submit(() -> runTask(runsForThisThread, master, accumulator));
+            Random threadRandom = new Random(master.nextLong()); // unique seed per thread
+            executorService.submit(() -> runTask(runsForThisThread, threadRandom, accumulator));
         }
 
         executorService.shutdown();
