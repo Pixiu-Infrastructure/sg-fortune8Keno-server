@@ -25,9 +25,7 @@ public class RTPTestSingleSimplified_Spot6 {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 8766453L;
-
-
+    private final long totalRuns = 1_00_00_00_00_0L;
 
     private final long batchSize = 5_000_000L;
 

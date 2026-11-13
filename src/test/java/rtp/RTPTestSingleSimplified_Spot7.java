@@ -24,7 +24,7 @@ public class RTPTestSingleSimplified_Spot7 {
     private final BigDecimal rtp = RTP.VARIANT_92;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
-    private final long totalRuns = 500_0000_0L;
+    private final long totalRuns = 1_00_00_00_00_0L;
 
     private final long batchSize = 5_000_000L;
 
