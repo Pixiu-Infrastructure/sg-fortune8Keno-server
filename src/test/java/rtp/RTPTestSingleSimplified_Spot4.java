@@ -23,13 +23,7 @@ public class RTPTestSingleSimplified_Spot4 {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 100_000_000L;
-
-
-
-    // How many rounds to run per batch, across all threads combined.
-    // Tune this down (e.g. 1_000_000L) if 5M still struggles on your machine,
-    // or up if your machine handles it comfortably and you want fewer batches.
+    private final long totalRuns = 1_00_00_00_00_0L;
     private final long batchSize = 5_000_000L;
 
     // Running total across all batches — accumulated safely between batches

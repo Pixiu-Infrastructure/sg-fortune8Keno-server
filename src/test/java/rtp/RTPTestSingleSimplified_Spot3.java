@@ -23,13 +23,7 @@ public class RTPTestSingleSimplified_Spot3 {
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
-    private final long totalRuns = 10_000_000_0L;
-
-
-
-    // How many rounds to run per batch, across all threads combined.
-    // Tune this down (e.g. 1_000_000L) if 5M still struggles on your machine,
-    // or up if your machine handles it comfortably and you want fewer batches.
+    private final long totalRuns = 1_00_00_00_00_0L;
     private final long batchSize = 5_000_000L;
 
     // Running total across all batches — accumulated safely between batches
@@ -150,11 +144,12 @@ public class RTPTestSingleSimplified_Spot3 {
         long endTime = System.currentTimeMillis();
         long seconds = (endTime - startingTime) / 1000;
         System.out.println("Time taken: " + seconds + " seconds");
-        int fileName = rtp.multiply(BigDecimal.valueOf(100)).intValue();
+        int rtp = this.rtp.multiply(BigDecimal.valueOf(100)).intValue();
+        String fileName = "RTP_Result_1B_Spot_3_"+rtp+".xlsx";
 
         try {
-            RtpExcelWriterSimplified_Spot3.write("RTP_Result_1B_Spot3"+fileName+".xlsx", totalRuns, totalStake, rtpDataToPrint);
-            System.out.println("Excel written: RTP_Result_1B.xlsx");
+            RtpExcelWriterSimplified_Spot4.write(fileName, totalRuns, totalStake, rtpDataToPrint);
+            System.out.println("Excel written: " + fileName);
         } catch (IOException e) {
             System.out.println("Failed to write Excel: " + e.getMessage());
         }
