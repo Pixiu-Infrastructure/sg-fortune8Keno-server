@@ -98,7 +98,7 @@ public class RtpTask implements Callable<RoundResult> {
         initialCommand.setAction("start");
         initialCommand.setStakeAmount(BigDecimal.ONE);
         initialCommand.setSelectedNumbers(getPlayerNumbers(random));
-        initialCommand.setRandomNumber(random);
+        initialCommand.setRandomNumber(new Random(random.nextLong()));
         StateResult stateResult = new StateResult();
 
 
