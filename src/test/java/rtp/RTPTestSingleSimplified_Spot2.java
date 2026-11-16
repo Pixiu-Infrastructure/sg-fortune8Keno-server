@@ -19,7 +19,7 @@ public class RTPTestSingleSimplified_Spot2 {
     private static int forceNumOfThreads = 0; // set this greater than 0 will force to run range check in number of threads/times
     private int availableThreads;
 
-    private final BigDecimal rtp = RTP.VARIANT_92;
+    private final BigDecimal rtp = RTP.VARIANT_86;
     static BigDecimal stakeValue = BigDecimal.ONE;
 
     // Total rounds across the WHOLE test (all batches combined).
@@ -146,8 +146,8 @@ public class RTPTestSingleSimplified_Spot2 {
         String fileName = "RTP_Result_1B_Spot_2_"+rtp+".xlsx";
 
         try {
-            RtpExcelWriterSimplified_Spot4.write(fileName, totalRuns, totalStake, rtpDataToPrint);
-            System.out.println("Excel written: RTP_Result_1B.xlsx");
+            RtpExcelWriterSimplified_Spot2.write(fileName, totalRuns, totalStake, rtpDataToPrint);;
+            System.out.println("Excel written: " + fileName);
         } catch (IOException e) {
             System.out.println("Failed to write Excel: " + e.getMessage());
         }
