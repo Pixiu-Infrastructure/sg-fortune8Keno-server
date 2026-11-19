@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.pixiu.fortune8keno.fortune8keno.dto.play.GameStateDTO;
 import lombok.Data;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -16,4 +17,5 @@ public class CommandResult {
     private int lastNumber;
     private int multiplier;
     private GameStateDTO gameState = new GameStateDTO();
+    private List<List<Double>> payouts;
 }

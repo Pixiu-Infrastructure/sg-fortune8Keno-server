@@ -10,6 +10,10 @@ public class KenoPayout {
         this.payoutTable = payoutTable;
     }
 
+    public Map<Integer, Double> getPayoutTable() {
+        return payoutTable;
+    }
+
     public BigDecimal calculateWinningAmount(BigDecimal stake, int matchedNumbers) {
         if (payoutTable.containsKey(matchedNumbers)) {
             return stake.multiply(BigDecimal.valueOf(payoutTable.get(matchedNumbers)));
