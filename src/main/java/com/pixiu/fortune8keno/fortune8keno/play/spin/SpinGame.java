@@ -151,6 +151,9 @@ public class SpinGame {
         commandResult.setMultiplier(multiplier);
         commandResult.setGameState(state);
         commandResult.setLastNumber(lastServerNum);
+        commandResult.setPrizeAmount(winningAmount * multiplier);
+        commandResult.setRtp("92");
+        commandResult.setPayouts(buildPayoutsTable(gameConfiguration));
 
         spinResult.setResult(commandResult);
         spinResult.setAction("start");
@@ -158,6 +161,26 @@ public class SpinGame {
         spinResult.setWinAmount(spinResult.getPrizeAmount());
 
         return spinResult;
+    }
+
+    private List<List<Double>> buildPayoutsTable(GameConfiguration gameConfiguration) {
+        Map<Integer, KenoPayout> kenoPayouts = gameConfiguration.getGameMathConfigSeparate().getKenoPayouts();
+        int maxSpot = kenoPayouts.keySet().stream().mapToInt(Integer::intValue).max().orElse(10);
+        List<List<Double>> payouts = new ArrayList<>();
+        for (int spot = 0; spot <= maxSpot; spot++) {
+            KenoPayout kenoPayout = kenoPayouts.get(spot);
+            if (kenoPayout == null) {
+                payouts.add(Collections.emptyList());
+            } else {
+                List<Double> spotPayouts = new ArrayList<>();
+                for (int hits = 0; hits <= spot; hits++) {
+                    Double val = kenoPayout.getPayoutTable().get(hits);
+                    spotPayouts.add(val != null ? val : 0.0);
+                }
+                payouts.add(spotPayouts);
+            }
+        }
+        return payouts;
     }
 
     private boolean isSupportedPickCount(int picks, GameConfiguration gameConfiguration) {

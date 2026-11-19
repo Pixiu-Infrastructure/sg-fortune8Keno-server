@@ -1,5 +1,6 @@
 package com.pixiu.fortune8keno.fortune8keno.play.spin;
 
+import java.util.List;
 import java.util.Map;
 
 public class KenoPayout {
@@ -14,5 +15,9 @@ public class KenoPayout {
             return (int) (stake * payoutTable.get(matchedNumbers));
         }
         return 0; // No payout for unmatched numbers
+    }
+
+    public Map<Integer, Double> getPayoutTable() {
+        return payoutTable;
     }
 }
